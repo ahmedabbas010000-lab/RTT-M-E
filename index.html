@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MARKETING FLOW</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              900: '#14532d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Cairo & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --primary-font: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    [lang="en"] {
+      --primary-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      font-family: var(--primary-font);
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .gantt-task-bar {
+      cursor: grab;
+      transition: transform 0.05s ease-out, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .gantt-task-bar:active {
+      cursor: grabbing;
+    }
+
+    .gantt-resize-handle {
+      opacity: 0;
+      transition: opacity 0.15s ease, width 0.15s ease;
+    }
+
+    .gantt-task-bar:hover .gantt-resize-handle {
+      opacity: 1;
+    }
+
+    .gantt-resize-left {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    .gantt-resize-right {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    #ganttDependencySvg path {
+      transition: stroke 0.2s ease, stroke-width 0.2s ease;
+    }
+
+    #ganttDependencySvg path:hover {
+      stroke: #4f46e5 !important;
+      stroke-width: 3px !important;
+      cursor: pointer;
+    }
+
+    .shadow-2xs {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    }
+
+    .shadow-xs {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    }
+
+    input[type="range"] {
+      height: 6px;
+      border-radius: 9999px;
+      background: #e2e8f0;
+    }
+
+    [dir="rtl"] .ltr-only {
+      direction: ltr;
+    }
+
+    @keyframes highlightPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+      50% { box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.35); }
+    }
+    .highlight-new-task {
+      animation: highlightPulse 1.2s ease-in-out 3;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
+
+  <!-- TOP APP BAR -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-30 shadow-2xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white shadow-sm ring-4 ring-slate-900/5">
+          <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base font-bold tracking-tight text-slate-900" data-i18n="appTitle">MARKETING FLOW</h1>
+            <span class="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider bg-indigo-50 text-indigo-700 border border-indigo-200">
+              Retail Enterprise
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 font-normal truncate" data-i18n="appSubtitle">نظام التوزيع والتجزئة والعمليات اللوجستية</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons & Controls -->
+      <div class="flex items-center gap-2.5">
+        
+        <!-- Google Sheets Integration Info -->
+        <button type="button" id="sheetsModalBtn" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold flex items-center gap-1.5 shadow-2xs transition-colors" title="Google Sheets Integration">
+          <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2v-4h2v4zm0-6h-2V7h2v4zm6 6h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg>
+          <span class="hidden sm:inline" data-i18n="sheetsIntegration">ربط Google Sheets</span>
+        </button>
+
+        <!-- Import / Export Actions -->
+        <div class="flex items-center gap-1.5 border-s border-slate-200 ps-2.5">
+          <button type="button" id="exportCsvBtn" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium flex items-center gap-1 transition-colors" title="Export CSV for Excel/Google Sheets">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            <span>CSV</span>
+          </button>
+          
+          <button type="button" id="exportJsonBtn" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium flex items-center gap-1 transition-colors" title="Export JSON backup">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+            <span>JSON</span>
+          </button>
+
+          <button type="button" id="triggerImportCsvBtn" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium flex items-center gap-1 transition-colors" title="Import CSV file">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+            <span data-i18n="importData">استيراد</span>
+          </button>
+        </div>
+
+        <!-- Language Toggle -->
+        <button type="button" id="langToggleBtn" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold transition-colors">
+          English
+        </button>
+
+        <!-- Reset Demo -->
+        <button type="button" id="resetDemoBtn" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" title="Reset Demo Data">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+        </button>
+
+        <!-- Primary Action: New Task Button -->
+        <button type="button" id="newTaskBtn" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-xs hover:shadow transition-all flex items-center gap-1.5 ms-1 cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 4v16m8-8H4" /></svg>
+          <span data-i18n="newTask">مهمة جديدة</span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN APPLICATION CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col space-y-6">
+
+    <!-- APPLICATION VIEWS -->
+    <nav class="inline-flex self-start rounded-xl border border-slate-200 bg-white p-1 shadow-xs" aria-label="التنقل بين أقسام المنصة">
+      <button type="button" data-app-view="tasks" class="app-view-tab px-4 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white transition-colors">المهام ومخطط جانت</button>
+      <button type="button" data-app-view="daily-report" class="app-view-tab px-4 py-2 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100 transition-colors">تقرير يومي · التسويق</button>
+      <button type="button" data-app-view="advertising-cost" class="app-view-tab px-4 py-2 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100 transition-colors">Marketing Advertising Cost</button>
+    </nav>
+
+    <div id="tasksView" class="contents">
+
+    <!-- DASHBOARD SUMMARY METRICS -->
+    <section id="dashboardMetricsContainer"></section>
+
+    <!-- GANTT TOOLBAR: FILTERS & TIMELINE SCALE -->
+    <section class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-xs">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        
+        <!-- Search & Dynamic Filters -->
+        <div class="flex flex-wrap items-center gap-2.5 flex-1">
+          
+          <!-- Search input -->
+          <div class="relative w-full sm:w-64">
+            <input type="text" id="searchInput" 
+                   data-i18n-placeholder="searchPlaceholder"
+                   placeholder="بحث عن مهمة أو رقم أو موكل..." 
+                   class="w-full text-xs ps-8 pe-3 py-2 rounded-lg border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-indigo-600 outline-none transition-all placeholder:text-slate-400" />
+            <div class="absolute inset-y-0 start-2.5 flex items-center pointer-events-none text-slate-400">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </div>
+          </div>
+
+          <!-- Department Filter -->
+          <select id="deptFilterSelect" class="text-xs px-3 py-2 rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-slate-300 focus:border-indigo-600 outline-none transition-all cursor-pointer">
+            <option value="all" data-i18n="allDepartments">جميع الإدارات</option>
+            <option value="operations" data-i18n="dept_operations">التشغيل</option>
+            <option value="warehousing" data-i18n="dept_warehousing">المخازن</option>
+            <option value="marketing" data-i18n="dept_marketing">التسويق</option>
+            <option value="sales" data-i18n="dept_sales">المبيعات</option>
+            <option value="hr" data-i18n="dept_hr">الموارد البشرية</option>
+          </select>
+
+          <!-- Status Filter -->
+          <select id="statusFilterSelect" class="text-xs px-3 py-2 rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-slate-300 focus:border-indigo-600 outline-none transition-all cursor-pointer">
+            <option value="all" data-i18n="allStatuses">جميع الحالات</option>
+            <option value="not_started" data-i18n="status_not_started">لم تبدأ</option>
+            <option value="in_progress" data-i18n="status_in_progress">قيد التنفيذ</option>
+            <option value="completed" data-i18n="status_completed">مكتملة</option>
+            <option value="delayed" data-i18n="status_delayed">متأخرة</option>
+          </select>
+
+          <!-- Priority Filter -->
+          <select id="priorityFilterSelect" class="text-xs px-3 py-2 rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-slate-300 focus:border-indigo-600 outline-none transition-all cursor-pointer">
+            <option value="all" data-i18n="allPriorities">جميع الأولويات</option>
+            <option value="high" data-i18n="priority_high">عالية</option>
+            <option value="medium" data-i18n="priority_medium">متوسطة</option>
+            <option value="low" data-i18n="priority_low">منخفضة</option>
+          </select>
+
+          <!-- Assignee Filter -->
+          <select id="assigneeFilterSelect" class="text-xs px-3 py-2 rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-slate-300 focus:border-indigo-600 outline-none transition-all cursor-pointer">
+            <option value="all">جميع الموكلين</option>
+          </select>
+
+          <!-- Clear Filters -->
+          <button type="button" id="clearFiltersBtn" class="text-xs text-rose-600 hover:text-rose-700 font-medium px-2 py-1 rounded hover:bg-rose-50 transition-colors hidden" data-i18n="clearFilters">
+            إلغاء التصفية
+          </button>
+
+        </div>
+
+        <!-- Timescale Mode Switcher & Zoom Controls -->
+        <div class="flex items-center gap-2 self-end lg:self-auto shrink-0">
+          
+          <!-- Mode (Days / Weeks / Months) -->
+          <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-slate-100 text-xs">
+            <button type="button" data-view-mode="days" class="px-3 py-1 rounded-md font-medium transition-all bg-slate-900 text-white shadow-xs" data-i18n="days">أيام</button>
+            <button type="button" data-view-mode="weeks" class="px-3 py-1 rounded-md font-medium transition-all bg-white text-slate-700 hover:bg-slate-50" data-i18n="weeks">أسابيع</button>
+            <button type="button" data-view-mode="months" class="px-3 py-1 rounded-md font-medium transition-all bg-white text-slate-700 hover:bg-slate-50" data-i18n="months">أشهر</button>
+          </div>
+
+          <!-- Zoom In / Out -->
+          <div class="inline-flex rounded-lg border border-slate-200 bg-white overflow-hidden text-slate-600">
+            <button type="button" id="zoomOutBtn" class="p-1.5 hover:bg-slate-100 transition-colors border-e border-slate-200 cursor-pointer" title="Zoom Out">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" /></svg>
+            </button>
+            <button type="button" id="zoomInBtn" class="p-1.5 hover:bg-slate-100 transition-colors cursor-pointer" title="Zoom In">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CORE GANTT CHART VIEW -->
+    <section id="ganttChartContainer" class="flex-1"></section>
+
+    </div>
+
+    <!-- DAILY MARKETING REPORT VIEW -->
+    <section id="dailyReportView" class="hidden space-y-6">
+      <div class="bg-white border border-slate-200/80 rounded-2xl shadow-xs overflow-hidden">
+        <div class="px-6 py-5 border-b border-slate-100 bg-gradient-to-l from-fuchsia-50 to-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <p class="text-xs font-bold text-fuchsia-700 mb-1">إدارة التسويق</p>
+            <h2 class="text-lg font-bold text-slate-900">تقرير العمل اليومي</h2>
+            <p class="text-xs text-slate-500 mt-1">سجّل ما تم إنجازه، ثم احفظ التقرير أو صدّره PDF.</p>
+          </div>
+          <button type="button" id="newDailyReportBtn" class="px-4 py-2 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-bold shadow-sm transition-colors">＋ تقرير جديد</button>
+        </div>
+        <form id="dailyReportForm" class="p-6 space-y-5">
+          <input type="hidden" id="dailyReportId" />
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="dailyReportDate" class="block mb-1.5 text-xs font-bold text-slate-700">التاريخ</label>
+              <input id="dailyReportDate" type="date" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-fuchsia-600 outline-none" />
+            </div>
+            <div>
+              <label for="dailyReportType" class="block mb-1.5 text-xs font-bold text-slate-700">نوع المهمة</label>
+              <select id="dailyReportType" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-fuchsia-600 outline-none">
+                <option value="قرار">قرار</option>
+                <option value="سوشيال ميديا">سوشيال ميديا</option>
+                <option value="ويب سايت">ويب سايت</option>
+                <option value="فروع">فروع</option>
+                <option value="اتفاق تجاري">اتفاق تجاري</option>
+                <option value="أخرى">أخرى</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="dailyReportCustomType" class="block mb-1.5 text-xs font-bold text-slate-700">نوع مهمة إضافي <span class="font-normal text-slate-400">(اختياري)</span></label>
+            <input id="dailyReportCustomType" type="text" placeholder="اكتب نوع المهمة إذا لم يكن موجودًا في القائمة" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-fuchsia-600 outline-none" />
+          </div>
+          <div>
+            <label for="dailyReportTitle" class="block mb-1.5 text-xs font-bold text-slate-700">عنوان العمل</label>
+            <input id="dailyReportTitle" type="text" required placeholder="مثال: اعتماد خطة حملة شهر أكتوبر" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-fuchsia-600 outline-none" />
+          </div>
+          <div>
+            <label for="dailyReportNotes" class="block mb-1.5 text-xs font-bold text-slate-700">ما تم عمله</label>
+            <textarea id="dailyReportNotes" required rows="7" placeholder="اكتب تفاصيل الأعمال المنجزة والنتائج والخطوات التالية..." class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm leading-6 focus:border-fuchsia-600 outline-none resize-y"></textarea>
+          </div>
+          <div>
+            <label for="dailyReportLink" class="block mb-1.5 text-xs font-bold text-slate-700">رابط مرتبط بالعمل <span class="font-normal text-slate-400">(اختياري)</span></label>
+            <input id="dailyReportLink" type="url" placeholder="https://..." class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm ltr-only focus:border-fuchsia-600 outline-none" dir="ltr" />
+          </div>
+          <div class="flex flex-wrap justify-end gap-2 pt-1">
+            <button type="button" id="clearDailyReportBtn" class="px-4 py-2 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100">إلغاء</button>
+            <button type="submit" class="px-4 py-2 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-bold">حفظ التقرير</button>
+          </div>
+        </form>
+      </div>
+      <div class="bg-white border border-slate-200/80 rounded-2xl shadow-xs overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between"><h3 class="text-sm font-bold text-slate-900">التقارير المحفوظة</h3><span id="dailyReportsCount" class="text-xs text-slate-500"></span></div>
+        <div id="dailyReportsList" class="divide-y divide-slate-100"></div>
+      </div>
+    </section>
+
+    <!-- MARKETING ADVERTISING COST VIEW -->
+    <section id="advertisingCostView" class="hidden space-y-6">
+      <div class="bg-white border border-slate-200/80 rounded-2xl shadow-xs overflow-hidden">
+        <div class="px-6 py-5 border-b border-slate-100 bg-gradient-to-l from-amber-50 to-white">
+          <p class="text-xs font-bold text-amber-700 mb-1">MARKETING FLOW</p>
+          <h2 class="text-lg font-bold text-slate-900">Marketing Advertising Cost</h2>
+          <p class="text-xs text-slate-500 mt-1">أدخل بيانات الحملة وقيمة كل عنصر بالجنيه المصري؛ الإجماليات تُحسب تلقائيًا.</p>
+        </div>
+        <form id="advertisingCostForm" class="p-6 space-y-7">
+          <section>
+            <h3 class="text-sm font-bold text-slate-900 mb-4">بيانات الحملة</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="md:col-span-2"><label class="block mb-1.5 text-xs font-bold text-slate-700" for="campaignName">اسم الحملة</label><input id="campaignName" required type="text" placeholder="اكتب اسم الحملة" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-amber-500 outline-none" /></div>
+              <div><label class="block mb-1.5 text-xs font-bold text-slate-700" for="campaignStart">من</label><input id="campaignStart" type="date" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-amber-500 outline-none" /></div>
+              <div><label class="block mb-1.5 text-xs font-bold text-slate-700" for="campaignEnd">إلى</label><input id="campaignEnd" type="date" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-amber-500 outline-none" /></div>
+              <div class="md:col-span-2"><label class="block mb-1.5 text-xs font-bold text-slate-700" for="campaignSponsors">الرعاة <span class="font-normal text-slate-400">(اختياري)</span></label><input id="campaignSponsors" type="text" placeholder="أسماء الرعاة، مفصولة بفواصل" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-amber-500 outline-none" /></div>
+            </div>
+          </section>
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <section class="border border-indigo-100 rounded-xl overflow-hidden"><div class="px-5 py-3 bg-indigo-50 border-b border-indigo-100 flex items-center justify-between"><h3 class="font-bold text-indigo-950">Digital</h3><span id="digitalTotal" class="text-sm font-bold text-indigo-700">0 ج.م</span></div><div id="digitalCostFields" class="p-5 space-y-3"></div><div class="px-5 pb-5"><div class="flex gap-2"><input id="newDigitalItem" type="text" placeholder="إضافة عنصر Digital جديد" class="min-w-0 flex-1 rounded-lg border border-indigo-200 px-3 py-2 text-sm focus:border-indigo-500 outline-none" /><button type="button" id="addDigitalItemBtn" class="px-3 py-2 rounded-lg bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700">إضافة</button></div></div></section>
+            <section class="border border-amber-100 rounded-xl overflow-hidden"><div class="px-5 py-3 bg-amber-50 border-b border-amber-100 flex items-center justify-between"><h3 class="font-bold text-amber-950">Fixed / Assets</h3><span id="fixedTotal" class="text-sm font-bold text-amber-700">0 ج.م</span></div><div id="fixedCostFields" class="p-5 space-y-3"></div><div class="px-5 pb-5"><div class="flex gap-2"><input id="newFixedItem" type="text" placeholder="إضافة عنصر Fixed جديد" class="min-w-0 flex-1 rounded-lg border border-amber-200 px-3 py-2 text-sm focus:border-amber-500 outline-none" /><button type="button" id="addFixedItemBtn" class="px-3 py-2 rounded-lg bg-amber-500 text-white text-xs font-bold hover:bg-amber-600">إضافة</button></div></div></section>
+          </div>
+          <div class="rounded-xl bg-slate-900 px-6 py-5 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><p class="text-xs text-slate-300">إجمالي تكلفة الحملة الإعلانية</p><p id="advertisingGrandTotal" class="text-3xl font-bold mt-1">0 ج.م</p></div><div class="flex gap-2"><button type="button" id="resetAdvertisingCostBtn" class="px-4 py-2 rounded-lg text-xs font-bold text-slate-200 hover:bg-slate-800">مسح القيم</button><button type="submit" class="px-4 py-2 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold">حفظ تكلفة الحملة</button></div></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TASK DETAILS & EDIT MODAL CONTAINER -->
+  <!-- Task Details & Edit Modal -->
+<div id="taskModalContainer" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+  <div class="bg-white rounded-xl shadow-lg w-full max-w-3xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+    <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/70">
+      <h3 class="text-lg font-bold" id="taskModalTitle" data-i18n="taskModalTitle">إضافة مهمة جديدة</h3>
+      <button type="button" id="closeTaskModalBtn" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="p-6 space-y-4 text-sm text-slate-700">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="taskName">اسم المهمة</label>
+          <input type="text" id="taskNameInput" class="w-full border rounded px-2 py-1" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="department">الإدارة</label>
+          <select id="taskDeptSelect" class="w-full border rounded px-2 py-1">
+            <option value="operating" data-i18n="operating">التشغيل</option>
+            <option value="marketing" data-i18n="marketing">التسويق</option>
+            <option value="hr" data-i18n="hr">الموارد البشرية</option>
+            <option value="warehousing" data-i18n="warehousing">المخازن</option>
+            <option value="sales" data-i18n="sales">المبيعات</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="startDate">تاريخ البدء</label>
+          <input type="date" id="taskStartInput" class="w-full border rounded px-2 py-1" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="endDate">تاريخ الانتهاء</label>
+          <input type="date" id="taskEndInput" class="w-full border rounded px-2 py-1" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="duration">المدة (يوم)</label>
+          <input type="number" id="taskDurationInput" class="w-full border rounded px-2 py-1" readonly />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="cost">التكلفة (SAR)</label>
+          <input type="number" id="taskCostInput" class="w-full border rounded px-2 py-1" />
+        </div>
+        <div class="col-span-2">
+          <label class="block mb-1 font-medium" data-i18n="assignee">الموكل بالمهمة</label>
+          <input type="text" id="taskAssigneeInput" class="w-full border rounded px-2 py-1" />
+        </div>
+        <div class="col-span-2">
+          <label class="block mb-1 font-medium" data-i18n="dependencies">تابعية المهمة (IDs مفصولة بفواصل)</label>
+          <input type="text" id="taskDepsInput" class="w-full border rounded px-2 py-1" placeholder="TSK-101,TSK-102" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="status">الحالة</label>
+          <select id="taskStatusSelect" class="w-full border rounded px-2 py-1">
+            <option value="not_started" data-i18n="not_started">لم يبدأ</option>
+            <option value="in_progress" data-i18n="in_progress">قيد التنفيذ</option>
+            <option value="completed" data-i18n="completed">مكتملة</option>
+            <option value="delayed" data-i18n="delayed">متأخرة</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="progress">نسبة الإنجاز (%)</label>
+          <input type="range" id="taskProgressSlider" min="0" max="100" class="w-full" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" data-i18n="priority">الأولوية</label>
+          <select id="taskPrioritySelect" class="w-full border rounded px-2 py-1">
+            <option value="high" data-i18n="high">عالية</option>
+            <option value="medium" data-i18n="medium">متوسطة</option>
+            <option value="low" data-i18n="low">منخفضة</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="px-6 py-3 border-t border-slate-200 flex justify-end space-x-2">
+      <button type="button" id="saveTaskBtn" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" data-i18n="save">حفظ</button>
+      <button type="button" id="cancelTaskBtn" class="px-4 py-2 bg-gray-200 text-slate-800 rounded hover:bg-gray-300" data-i18n="cancel">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+  <!-- GOOGLE SHEETS INTEGRATION INFO MODAL -->
+  <div id="googleSheetsModal" class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200/80 w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="px-6 py-4.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2v-4h2v4zm0-6h-2V7h2v4zm6 6h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900" data-i18n="sheetsModalTitle">ربط البيانات مع جداول Google Sheets</h3>
+        </div>
+        <button type="button" id="closeSheetsModalBtn" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs text-slate-700 leading-relaxed">
+        <p class="text-slate-600">
+          تم تصميم هيكل بيانات المنصة ليتوافق بنسبة 100% مع الجداول الممتدة لـ <strong>Google Sheets</strong> و<strong>Microsoft Excel</strong>، مع دعم كامل للغة العربية عبر ترميز (UTF-8 BOM).
+        </p>
+
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-900 text-xs">طريقة الاستخدام الفوري (CSV):</h4>
+          <ol class="list-decimal list-inside space-y-1.5 text-slate-600 ps-1">
+            <li>اضغط على زر <strong>CSV</strong> في الأعلى لتنزيل كافة المهام في ملف جدول بيانات جاهز.</li>
+            <li>افتح Google Drive وأنشئ جدول Google Sheets جديد، ثم اختر <em>ملف &gt; استيراد &gt; تحميل</em>.</li>
+            <li>لإعادة استيراد التعديلات من Google Sheets: اختر <em>ملف &gt; تنزيل &gt; قيم مفصولة بفواصل (.csv)</em> ثم اضغط زر <strong>استيراد</strong> في المنصة.</li>
+          </ol>
+        </div>
+
+        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="font-mono font-semibold text-[11px] text-slate-800">Apps Script Webhook Endpoint (اختياري للربط السحابي المباشر):</span>
+            <span class="text-[10px] text-emerald-600 font-medium">REST API Ready</span>
+          </div>
+          <pre class="bg-slate-900 text-slate-200 p-3 rounded-lg font-mono text-[10px] overflow-x-auto ltr-only">function doGet(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+        </div>
+
+        <div class="pt-2 flex justify-end">
+          <button type="button" onclick="document.getElementById('googleSheetsModal').classList.add('hidden')" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-bold text-xs cursor-pointer">
+            حسناً، فهمت
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST NOTIFICATIONS -->
+  <div id="toastContainer" class="fixed bottom-5 end-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- HIDDEN INPUTS FOR FILE IMPORTS -->
+  <input type="file" id="jsonFileInput" accept=".json,application/json" class="hidden" />
+  <input type="file" id="csvFileInput" accept=".csv,text/csv" class="hidden" />
+
+  <!-- SELF-CONTAINED APPLICATION LOGIC SCRIPT (RUNS INSTANTLY ON ANY PROTOCOL) -->
+  <script>
+    // --- 1. INITIAL DATA ---
+    const initialTasks = [
+      {
+        id: "TSK-101",
+        name: "تدقيق مخزون الأمان وتخصيص مساحات موسم الذروة (Q4 Buffer)",
+        nameEn: "Q4 Safety Stock Audit & Peak Season Storage Allocation",
+        department: "warehousing",
+        startDate: "2026-10-01",
+        endDate: "2026-10-12",
+        duration: 11,
+        cost: 45000,
+        currency: "SAR",
+        assignee: "فهد المنصور",
+        assigneeEn: "Fahad Al-Mansour",
+        assigneeRole: "مدير العمليات اللوجستية والمخازن",
+        dependencies: [],
+        status: "completed",
+        progress: 100,
+        priority: "high",
+        deliverables: [
+          { id: "del-1", text: "جرد الأصناف السريعة الحركة (A-grade SKUs)", completed: true },
+          { id: "del-2", text: "توسيع مساحات التخزين المؤقت بمستودع الرياض المركزي", completed: true },
+          { id: "del-3", text: "اعتماد حدود إعادة الطلب الدنيا لموردين الأجهزة والإلكترونيات", completed: true }
+        ],
+        notes: "تم تخصيص 2,500 م² إضافية للبضائع الترويجية بالتنسيق مع مسؤولي المستودع."
+      },
+      {
+        id: "TSK-102",
+        name: "نشر ماسحات الباركود وRFID اللاسلكية بنقاط الاستلام",
+        nameEn: "Automated RFID & Handheld Barcode Scanner Fleet Deployment",
+        department: "warehousing",
+        startDate: "2026-10-10",
+        endDate: "2026-10-24",
+        duration: 14,
+        cost: 68000,
+        currency: "SAR",
+        assignee: "م. ناصر الشهري",
+        assigneeEn: "Eng. Nasser Al-Shehri",
+        assigneeRole: "رئيس البنية التقنية للمستودعات",
+        dependencies: ["TSK-101"],
+        status: "in_progress",
+        progress: 75,
+        priority: "high",
+        deliverables: [
+          { id: "del-4", text: "فحص وتهيئة 120 ماسح باركود Zebra TC57", completed: true },
+          { id: "del-5", text: "تحديث برمجيات الربط المباشر مع نظام SAP WMS", completed: true },
+          { id: "del-6", text: "تدريب أمناء المخازن على بروتوكول المسح المزدوج", completed: false }
+        ],
+        notes: "تم إنهاء المرحلة الأولى لخطوط الاستلام؛ جاري ربط بوابات الشحن الصادر."
+      },
+      {
+        id: "TSK-103",
+        name: "إعادة التفاوض وتوثيق اتفاقيات مستوى الخدمة (SLAs) مع موردي التبريد",
+        nameEn: "Cold Chain SLA Re-negotiation & Freight Vendor Compliance",
+        department: "operations",
+        startDate: "2026-10-04",
+        endDate: "2026-10-18",
+        duration: 14,
+        cost: 32000,
+        currency: "SAR",
+        assignee: "سارة القحطاني",
+        assigneeEn: "Sarah Al-Qahtani",
+        assigneeRole: "أخصائية سلاسل الإمداد والعقود",
+        dependencies: [],
+        status: "completed",
+        progress: 100,
+        priority: "medium",
+        deliverables: [
+          { id: "del-7", text: "مراجعة شروط التعويض في حال تلف البضائع المبردة", completed: true },
+          { id: "del-8", text: "تثبيت حساسات مراقبة الحرارة IoT في شاحنات التوزيع", completed: true },
+          { id: "del-9", text: "توقيع الملاحق التعاقدية لشهري نوفمبر وديسمبر", completed: true }
+        ],
+        notes: "تم إلزام الموردين بتطبيق مراقبة فورية لدرجات الحرارة بنسبة دقة 99.8%."
+      },
+      {
+        id: "TSK-104",
+        name: "معايرة مسارات أسطول التوزيع الذكي لنقاط التجزئة الكبرى",
+        nameEn: "Fleet Dynamic Route Optimization & Retail Store Dispatch",
+        department: "operations",
+        startDate: "2026-10-17",
+        endDate: "2026-10-31",
+        duration: 14,
+        cost: 54000,
+        currency: "SAR",
+        assignee: "عبدالعزيز الغامدي",
+        assigneeEn: "Abdulaziz Al-Ghamdi",
+        assigneeRole: "مدير حركة الأسطول والنقل",
+        dependencies: ["TSK-103"],
+        status: "in_progress",
+        progress: 50,
+        priority: "high",
+        deliverables: [
+          { id: "del-10", text: "تكامل خرائط حركة المرور الفورية مع خوارزميات التوصيل", completed: true },
+          { id: "del-11", text: "تحديد نوافذ الاستلام والتفريغ الصباحية لمراكز التسوق", completed: true },
+          { id: "del-12", text: "تأمين 15 شاحنة مستأجرة كطاقة استيعابية مساندة", completed: false }
+        ],
+        notes: "يهدف المشروع إلى تقليص زمن تسليم الطلبيات من المستودع للمعارض بنسبة 22%."
+      },
+      {
+        id: "TSK-105",
+        name: "إطلاق حملة العروض السنوية الترويجية والتوزيع الرقمي (Mega Sale)",
+        nameEn: "Annual Mega Promotional Campaign & Digital Omnichannel Launch",
+        department: "marketing",
+        startDate: "2026-10-08",
+        endDate: "2026-10-25",
+        duration: 17,
+        cost: 120000,
+        currency: "SAR",
+        assignee: "ريما الدوسري",
+        assigneeEn: "Reema Al-Dossary",
+        assigneeRole: "مديرة التسويق الرقمي والتواصل",
+        dependencies: [],
+        status: "in_progress",
+        progress: 60,
+        priority: "high",
+        deliverables: [
+          { id: "del-13", text: "إنتاج المواد الإعلانية المرئية والكتالوجات التفاعلية", completed: true },
+          { id: "del-14", text: "تنسيق ميزانيات الحملات الممولة على قنوات التواصل", completed: true },
+          { id: "del-15", text: "تفعيل رموز الخصم المشتركة مع بنوك التجزئة الشريكة", completed: false }
+        ],
+        notes: "الحملة تستهدف أكثر من 4 ملايين مستهلك وتغطي كافة الفروع الإلكترونية والمعارض."
+      },
+      {
+        id: "TSK-106",
+        name: "تجهيز المنصات الترويجية المرئية بالمعارض ومواد العرض (POSM)",
+        nameEn: "In-Store Visual Merchandising & POS Display Distribution",
+        department: "marketing",
+        startDate: "2026-10-24",
+        endDate: "2026-11-06",
+        duration: 13,
+        cost: 48000,
+        currency: "SAR",
+        assignee: "هيثم الحربي",
+        assigneeEn: "Haitham Al-Harbi",
+        assigneeRole: "مشرف الهوية التجارية والعرض البصري",
+        dependencies: ["TSK-105"],
+        status: "not_started",
+        progress: 0,
+        priority: "medium",
+        deliverables: [
+          { id: "del-16", text: "شحن 350 وحدة عرض كرتونية مخصصة لنقاط البيع", completed: false },
+          { id: "del-17", text: "تركيب الشاشات الإعلانية التفاعلية في الفروع المركزية", completed: false },
+          { id: "del-18", text: "مراجعة الامتثال البصري ومواقع التموضع الذهبي للأصناف", completed: false }
+        ],
+        notes: "مواد العرض قيد الطباعة وسيتم تسليمها وفق جدول توزيع الفروع المعتمد."
+      },
+      {
+        id: "TSK-107",
+        name: "برنامج حوافز مبيعات الجملة وكبار الموزعين المعتمدين (B2B Tiers)",
+        nameEn: "B2B Key Accounts Incentive & Tiered Rebate Program",
+        department: "sales",
+        startDate: "2026-10-02",
+        endDate: "2026-10-16",
+        duration: 14,
+        cost: 75000,
+        currency: "SAR",
+        assignee: "عمر السليمان",
+        assigneeEn: "Omar Al-Sulaiman",
+        assigneeRole: "مدير مبيعات كبار العملاء والقطاع التجاري",
+        dependencies: [],
+        status: "completed",
+        progress: 100,
+        priority: "high",
+        deliverables: [
+          { id: "del-19", text: "إعداد شرائح الخصم الكمي لكبار تجار الجملة", completed: true },
+          { id: "del-20", text: "تحديث الشروط الائتمانية والضمانات البنكية", completed: true },
+          { id: "del-21", text: "عقد الاجتماع الربع سنوي مع أكبر 25 وكيلاً معتمداً", completed: true }
+        ],
+        notes: "تم توقيع خطابات التزام شراء مسبق بقيمة تتجاوز 18 مليون ريال."
+      },
+      {
+        id: "TSK-108",
+        name: "ترقية أجهزة نقاط البيع السحابية وبوابات الدفع الإلكتروني (POS Sync)",
+        nameEn: "Cloud POS Firmware Upgrade & Payment Gateway Redundancy",
+        department: "sales",
+        startDate: "2026-10-15",
+        endDate: "2026-10-26",
+        duration: 11,
+        cost: 39000,
+        currency: "SAR",
+        assignee: "مها التميمي",
+        assigneeEn: "Maha Al-Tamimi",
+        assigneeRole: "مسؤولة حلول نقاط البيع والأنظمة المالية",
+        dependencies: ["TSK-107"],
+        status: "delayed",
+        progress: 35,
+        priority: "high",
+        deliverables: [
+          { id: "del-22", text: "تحديث برمجيات 450 طرفية دفع لتدعم بروتوكول الدفع السريع", completed: true },
+          { id: "del-23", text: "اختبار مسار الربط الاحتياطي لشبكة مدى في أوقات الذروة", completed: false },
+          { id: "del-24", text: "اعتماد رخص التزامن اللحظي مع قاعدة البيانات المالية", completed: false }
+        ],
+        notes: "تأخر الاستلام من المورد الخارجي بخصوص شريحة التشفير الجديدة؛ يجري التواصل لحل الإشكال."
+      },
+      {
+        id: "TSK-109",
+        name: "استقطاب وتدريب العمالة الموسمية واعتماد رخص قيادة الرافعات الشوكية",
+        nameEn: "Peak Season Warehouse Staff Onboarding & Forklift Certification",
+        department: "hr",
+        startDate: "2026-10-03",
+        endDate: "2026-10-20",
+        duration: 17,
+        cost: 85000,
+        currency: "SAR",
+        assignee: "ماجد المطيري",
+        assigneeEn: "Majed Al-Mutairi",
+        assigneeRole: "رئيس قسم التوظيف والتدريب المهني",
+        dependencies: [],
+        status: "completed",
+        progress: 100,
+        priority: "medium",
+        deliverables: [
+          { id: "del-25", text: "التعاقد مع 80 عاملاً موسمياً لدعم التحميل والتفريغ", completed: true },
+          { id: "del-26", text: "دورة السلامة المهنية المعتمدة للرافعات الشوكية الثقيلة", completed: true },
+          { id: "del-27", text: "إصدار بطاقات الدخول الأمنية والتصاريح البيومترية", completed: true }
+        ],
+        notes: "اكتمل تدريب جميع السائقين بنجاح وحصلوا على شهادات السلامة القياسية OSHA."
+      },
+      {
+        id: "TSK-110",
+        name: "تطبيق جدول المناوبات المرنة ومراقبة السلامة المهنية والصحة (HSE)",
+        nameEn: "24/7 Shift Rotation Scheduling & HSE Warehouse Health Audits",
+        department: "hr",
+        startDate: "2026-10-19",
+        endDate: "2026-11-05",
+        duration: 17,
+        cost: 26000,
+        currency: "SAR",
+        assignee: "سلطان العتيبي",
+        assigneeEn: "Sultan Al-Otaibi",
+        assigneeRole: "مشرف الصحة والسلامة والبيئة",
+        dependencies: ["TSK-109"],
+        status: "in_progress",
+        progress: 40,
+        priority: "medium",
+        deliverables: [
+          { id: "del-28", text: "برمجة نظام الحضور الذكي لتغطية 3 ورديات على مدار الساعة", completed: true },
+          { id: "del-29", text: "تجهيز حقائب الإسعافات الأولية ونقاط الإخلاء بالمستودعات", completed: true },
+          { id: "del-30", text: "جدولة فحوصات الإجهاد الحراري وفترات الراحة الإلزامية", completed: false }
+        ],
+        notes: "تم تفعيل جدول الوردية الليلية لتقليل تكدس المستودع خلال ساعات الصباح."
+      },
+      {
+        id: "TSK-111",
+        name: "معايرة خوارزميات نقاط إعادة الطلب الآلية ونظام تخطيط الموارد (ERP ROP)",
+        nameEn: "ERP Automated Reorder Point Calibration & Safety Stock Triggers",
+        department: "operations",
+        startDate: "2026-10-23",
+        endDate: "2026-11-08",
+        duration: 16,
+        cost: 58000,
+        currency: "SAR",
+        assignee: "د. طارق الزهراني",
+        assigneeEn: "Dr. Tariq Al-Zahrani",
+        assigneeRole: "خبير نمذجة البيانات وتخطيط المخزون",
+        dependencies: ["TSK-102"],
+        status: "delayed",
+        progress: 20,
+        priority: "high",
+        deliverables: [
+          { id: "del-31", text: "تغذية خوارزمية التنبؤ ببيانات المبيعات لآخر ثلاث سنوات", completed: true },
+          { id: "del-32", text: "ضبط فترات التوريد (Lead Time) المحدثة لموردي آسيا وأوروبا", completed: false },
+          { id: "del-33", text: "تفعيل إشعارات التنبيه المبكر لنفاد المخزون الحرجة", completed: false }
+        ],
+        notes: "يوجد تأخر في استلام مصفوفة أزمنة الشحن البحري من خطوط الملاحة."
+      },
+      {
+        id: "TSK-112",
+        name: "خطة التصفية السريعة والخدمات اللوجستية العكسية وإرجاع المرتجعات",
+        nameEn: "Reverse Logistics & Post-Peak Return Merchandise Processing",
+        department: "warehousing",
+        startDate: "2026-11-05",
+        endDate: "2026-11-20",
+        duration: 15,
+        cost: 42000,
+        currency: "SAR",
+        assignee: "فهد المنصور",
+        assigneeEn: "Fahad Al-Mansour",
+        assigneeRole: "مدير العمليات اللوجستية والمخازن",
+        dependencies: ["TSK-106", "TSK-108"],
+        status: "not_started",
+        progress: 0,
+        priority: "low",
+        deliverables: [
+          { id: "del-34", text: "تخصيص رصيف الاستلام العكسي لفحص السلع المعادة", completed: false },
+          { id: "del-35", text: "أتمتة إصدار قسائم الاسترداد المالي للعملاء خلال 24 ساعة", completed: false },
+          { id: "del-36", text: "تصنيف السلع المرتجعة لإعادة التغليف أو البيع بسعر مخفض", completed: false }
+        ],
+        notes: "مخطط للبدء عقب انتهاء ذروة عروض نوفمبر مباشرة."
+      }
+    ];
+
+    // --- 2. I18N TRANSLATIONS ---
+    const translations = {
+      ar: {
+        appTitle: "MARKETING FLOW",
+        appSubtitle: "نظام التوزيع والتجزئة والعمليات اللوجستية",
+        totalTasks: "إجمالي المهام",
+        delayedTasks: "المهام المتأخرة",
+        totalBudget: "الميزانية المرصودة",
+        avgProgress: "نسبة الإنجاز العامة",
+        departmentProgress: "معدل الإنجاز حسب الإدارة",
+        newTask: "مهمة جديدة",
+        exportData: "تصدير",
+        importData: "استيراد",
+        sheetsIntegration: "ربط Google Sheets",
+        searchPlaceholder: "بحث عن مهمة أو رقم أو موكل...",
+        allDepartments: "جميع الإدارات",
+        allStatuses: "جميع الحالات",
+        allPriorities: "جميع الأولويات",
+        clearFilters: "إلغاء التصفية",
+        days: "أيام",
+        weeks: "أسابيع",
+        months: "أشهر",
+        idHeader: "رقم المهمة",
+        nameHeader: "اسم المهمة",
+        deptHeader: "الإدارة",
+        datesHeader: "التواريخ",
+        progressHeader: "الإنجاز",
+        costHeader: "التكلفة",
+        statusHeader: "الحالة",
+        assigneeHeader: "الموكل بها",
+        dept_operations: "التشغيل",
+        dept_marketing: "التسويق",
+        dept_hr: "الموارد البشرية",
+        dept_warehousing: "المخازن",
+        dept_sales: "المبيعات",
+        status_not_started: "لم تبدأ",
+        status_in_progress: "قيد التنفيذ",
+        status_completed: "مكتملة",
+        status_delayed: "متأخرة",
+        priority_high: "عالية",
+        priority_medium: "متوسطة",
+        priority_low: "منخفضة",
+        editTask: "تعديل بيانات المهمة",
+        createTask: "إضافة مهمة جديدة",
+        taskNameLabel: "اسم المهمة",
+        departmentLabel: "الإدارة المسؤولة",
+        startDateLabel: "تاريخ البدء",
+        endDateLabel: "تاريخ الانتهاء",
+        durationLabel: "المدة الزمنية المحسوبة",
+        durationUnit: "يوم",
+        costLabel: "التكلفة التقديرية",
+        assigneeLabel: "الموكل بالمهمة",
+        statusLabel: "حالة المهمة",
+        priorityLabel: "درجة الأولوية",
+        progressLabel: "نسبة الإنجاز",
+        dependenciesLabel: "تابعية المهمة (مهام سابقة مشترطة)",
+        noDependencies: "لا توجد تبعيات",
+        deliverablesLabel: "العناصر المطلوبة والمخرجات (Checklist)",
+        addDeliverablePlaceholder: "أضف عنصراً مطلوباً أو مخرجاً...",
+        addItemBtn: "إضافة عنصر",
+        notesLabel: "ملاحظات وتفاصيل إضافية",
+        saveChanges: "حفظ التغييرات",
+        saveNew: "إنشاء المهمة",
+        duplicate: "نسخ المهمة",
+        delete: "حذف المهمة",
+        cancel: "إلغاء",
+        confirmDelete: "هل أنت متأكد من رغبتك في حذف هذه المهمة؟",
+        currencySymbol: "ر.س",
+        dragToResize: "اسحب لتعديل المدة",
+        dependencyConflict: "تنبيه: المهمة السابقة تنتهي بعد موعد بدء هذه المهمة!",
+        importedSuccess: "تم استيراد البيانات بنجاح"
+      },
+      en: {
+        appTitle: "MARKETING FLOW",
+        appSubtitle: "Retail Distribution & Workflow Tracking Platform",
+        totalTasks: "Total Tasks",
+        delayedTasks: "Delayed Tasks",
+        totalBudget: "Allocated Budget",
+        avgProgress: "Overall Progress",
+        departmentProgress: "Progress by Department",
+        newTask: "New Task",
+        exportData: "Export",
+        importData: "Import",
+        sheetsIntegration: "Google Sheets",
+        searchPlaceholder: "Search by task name, ID, or assignee...",
+        allDepartments: "All Departments",
+        allStatuses: "All Statuses",
+        allPriorities: "All Priorities",
+        clearFilters: "Clear Filters",
+        days: "Days",
+        weeks: "Weeks",
+        months: "Months",
+        idHeader: "Task ID",
+        nameHeader: "Task Name",
+        deptHeader: "Department",
+        datesHeader: "Dates",
+        progressHeader: "Progress",
+        costHeader: "Cost",
+        statusHeader: "Status",
+        assigneeHeader: "Assignee",
+        dept_operations: "Operations",
+        dept_marketing: "Marketing",
+        dept_hr: "Human Resources",
+        dept_warehousing: "Warehousing",
+        dept_sales: "Sales",
+        status_not_started: "Not Started",
+        status_in_progress: "In Progress",
+        status_completed: "Completed",
+        status_delayed: "Delayed",
+        priority_high: "High",
+        priority_medium: "Medium",
+        priority_low: "Low",
+        editTask: "Edit Task Details",
+        createTask: "Create New Task",
+        taskNameLabel: "Task Name",
+        departmentLabel: "Department",
+        startDateLabel: "Start Date",
+        endDateLabel: "End Date",
+        durationLabel: "Calculated Duration",
+        durationUnit: "days",
+        costLabel: "Task Cost",
+        assigneeLabel: "Assignee Name",
+        statusLabel: "Status",
+        priorityLabel: "Priority",
+        progressLabel: "Progress Rate",
+        dependenciesLabel: "Task Dependencies (Prerequisites)",
+        noDependencies: "No dependencies",
+        deliverablesLabel: "Required Items & Deliverables",
+        addDeliverablePlaceholder: "Add required item or deliverable...",
+        addItemBtn: "Add Item",
+        notesLabel: "Additional Notes & Material Specifications",
+        saveChanges: "Save Changes",
+        saveNew: "Create Task",
+        duplicate: "Duplicate",
+        delete: "Delete",
+        cancel: "Cancel",
+        confirmDelete: "Are you sure you want to delete this task?",
+        currencySymbol: "SAR",
+        dragToResize: "Drag edge handle to resize duration",
+        dependencyConflict: "Warning: Predecessor task ends after this task starts!",
+        importedSuccess: "Data imported successfully"
+      }
+    };
+
+    let currentLang = 'ar';
+    function t(k) { return (translations[currentLang] && translations[currentLang][k]) || translations['en'][k] || k; }
+
+    // --- 3. TOAST NOTIFICATIONS ---
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = "pointer-events-auto bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-xl flex items-center gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200 border border-slate-700";
+      toast.innerHTML = `
+        <span class="w-2 h-2 rounded-full ${type === 'success' ? 'bg-emerald-400' : 'bg-rose-400'}"></span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(8px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    // --- 4. STATE STORE ---
+    const STORAGE_KEY = 'retail_flow_gantt_tasks_v1';
+    class Store {
+      constructor() {
+        this.tasks = this.load();
+        this.listeners = new Set();
+        this.viewMode = 'days';
+        this.zoomLevel = 1;
+        this.selectedTaskId = null;
+        this.hoveredTaskId = null;
+        this.filters = { search: '', department: 'all', status: 'all', priority: 'all', assignee: 'all' };
+      }
+
+      load() {
+        try {
+          const s = localStorage.getItem(STORAGE_KEY);
+          if (s) {
+            const parsed = JSON.parse(s);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          }
+        } catch(e) {}
+        return JSON.parse(JSON.stringify(initialTasks));
+      }
+
+      save() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks)); } catch(e) {}
+      }
+
+      subscribe(fn) { this.listeners.add(fn); return () => this.listeners.delete(fn); }
+      notify(type = 'update') { for (const fn of this.listeners) fn(this, type); }
+
+      calculateDuration(s, e) {
+        if (!s || !e) return 1;
+        const d1 = new Date(s), d2 = new Date(e);
+        if (isNaN(d1.getTime()) || isNaN(d2.getTime())) return 1;
+        const u1 = Date.UTC(d1.getFullYear(), d1.getMonth(), d1.getDate());
+        const u2 = Date.UTC(d2.getFullYear(), d2.getMonth(), d2.getDate());
+        return Math.max(1, Math.round((u2 - u1) / 86400000) + 1);
+      }
+
+      formatDate(d) {
+        const date = new Date(d);
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+      }
+
+      addDays(dateStr, days) {
+        const d = new Date(dateStr);
+        d.setDate(d.getDate() + days);
+        return this.formatDate(d);
+      }
+
+      generateNextId() {
+        const max = this.tasks.reduce((m, t) => {
+          const match = t.id.match(/TSK-(\d+)/);
+          return match ? Math.max(m, parseInt(match[1], 10)) : m;
+        }, 100);
+        return `TSK-${max + 1}`;
+      }
+
+      getTaskById(id) { return this.tasks.find(t => t.id === id); }
+
+      getAllTasks() { return this.tasks; }
+
+      getFilteredTasks() {
+        const { search, department, status, priority, assignee } = this.filters;
+        const q = (search || '').trim().toLowerCase();
+        return this.tasks.filter(t => {
+          if (department !== 'all' && t.department !== department) return false;
+          if (status !== 'all' && t.status !== status) return false;
+          if (priority !== 'all' && t.priority !== priority) return false;
+          if (assignee !== 'all') {
+            const a1 = (t.assignee || '').toLowerCase();
+            const a2 = (t.assigneeEn || '').toLowerCase();
+            if (!a1.includes(assignee.toLowerCase()) && !a2.includes(assignee.toLowerCase())) return false;
+          }
+          if (q) {
+            const m = (t.name || '').toLowerCase().includes(q) ||
+                      (t.nameEn || '').toLowerCase().includes(q) ||
+                      (t.id || '').toLowerCase().includes(q) ||
+                      (t.assignee || '').toLowerCase().includes(q) ||
+                      (t.notes || '').toLowerCase().includes(q) ||
+                      (t.deliverables || []).some(d => d.text.toLowerCase().includes(q));
+            if (!m) return false;
+          }
+          return true;
+        });
+      }
+
+      addTask(payload) {
+        const id = payload.id || this.generateNextId();
+        const startDate = payload.startDate || '2026-10-01';
+        const endDate = payload.endDate || this.addDays(startDate, 14);
+        const task = {
+          id,
+          name: payload.name || 'مهمة جديدة',
+          nameEn: payload.nameEn || 'New Task',
+          department: payload.department || 'operations',
+          startDate,
+          endDate,
+          duration: this.calculateDuration(startDate, endDate),
+          cost: Number(payload.cost) || 0,
+          currency: 'SAR',
+          assignee: payload.assignee || '',
+          assigneeEn: payload.assigneeEn || '',
+          assigneeRole: payload.assigneeRole || '',
+          dependencies: payload.dependencies || [],
+          status: payload.status || 'not_started',
+          progress: Math.min(100, Math.max(0, Number(payload.progress) || 0)),
+          priority: payload.priority || 'medium',
+          deliverables: payload.deliverables || [],
+          notes: payload.notes || ''
+        };
+        // Insert at TOP of list so it is immediately visible to user
+        this.tasks.unshift(task);
+        this.selectedTaskId = id;
+        this.save();
+        this.notify('add');
+        return task;
+      }
+
+      updateTask(id, updates) {
+        const idx = this.tasks.findIndex(t => t.id === id);
+        if (idx === -1) return null;
+        const current = this.tasks[idx];
+        const updated = { ...current, ...updates };
+        if (updates.startDate || updates.endDate) {
+          updated.duration = this.calculateDuration(updated.startDate, updated.endDate);
+        }
+        if (updates.progress !== undefined) {
+          updated.progress = Math.min(100, Math.max(0, Number(updates.progress)));
+          if (updated.progress === 100 && updated.status !== 'completed') updated.status = 'completed';
+          else if (updated.progress < 100 && updated.status === 'completed') updated.status = 'in_progress';
+        }
+        this.tasks[idx] = updated;
+        this.selectedTaskId = id;
+        this.save();
+        this.notify('update');
+        return updated;
+      }
+
+      updateTaskDates(id, start, end) {
+        const t = this.getTaskById(id);
+        if (!t) return;
+        t.startDate = start;
+        t.endDate = end;
+        t.duration = this.calculateDuration(start, end);
+        this.save();
+        this.notify('update');
+      }
+
+      deleteTask(id) {
+        const idx = this.tasks.findIndex(t => t.id === id);
+        if (idx === -1) return;
+        this.tasks.splice(idx, 1);
+        this.tasks.forEach(t => {
+          if (t.dependencies) t.dependencies = t.dependencies.filter(d => d !== id);
+        });
+        this.selectedTaskId = null;
+        this.save();
+        this.notify('delete');
+      }
+
+      duplicateTask(id) {
+        const original = this.getTaskById(id);
+        if (!original) return;
+        const clone = JSON.parse(JSON.stringify(original));
+        clone.id = this.generateNextId();
+        clone.name = `${original.name} (نسخة)`;
+        clone.startDate = this.addDays(original.startDate, 7);
+        clone.endDate = this.addDays(original.endDate, 7);
+        clone.status = 'not_started';
+        clone.progress = 0;
+        if (clone.deliverables) clone.deliverables.forEach(d => d.completed = false);
+        this.tasks.unshift(clone);
+        this.selectedTaskId = clone.id;
+        this.save();
+        this.notify('duplicate');
+      }
+
+      resetToDemo() {
+        this.tasks = JSON.parse(JSON.stringify(initialTasks));
+        this.selectedTaskId = null;
+        this.save();
+        this.notify('reset');
+      }
+
+      getMetrics() {
+        const total = this.tasks.length;
+        let delayed = 0, totalBudget = 0, completed = 0, progSum = 0;
+        const departmentStats = {
+          operations: { labelAr: 'التشغيل', count: 0, budget: 0, progSum: 0 },
+          warehousing: { labelAr: 'المخازن', count: 0, budget: 0, progSum: 0 },
+          marketing: { labelAr: 'التسويق', count: 0, budget: 0, progSum: 0 },
+          sales: { labelAr: 'المبيعات', count: 0, budget: 0, progSum: 0 },
+          hr: { labelAr: 'الموارد البشرية', count: 0, budget: 0, progSum: 0 }
+        };
+
+        for (const t of this.tasks) {
+          if (t.status === 'delayed') delayed++;
+          if (t.status === 'completed') completed++;
+          totalBudget += Number(t.cost) || 0;
+          progSum += Number(t.progress) || 0;
+          if (departmentStats[t.department]) {
+            departmentStats[t.department].count++;
+            departmentStats[t.department].budget += Number(t.cost) || 0;
+            departmentStats[t.department].progSum += Number(t.progress) || 0;
+          }
+        }
+
+        Object.keys(departmentStats).forEach(k => {
+          const d = departmentStats[k];
+          d.avgProgress = d.count > 0 ? Math.round(d.progSum / d.count) : 0;
+        });
+
+        return {
+          totalTasks: total,
+          delayedTasks: delayed,
+          totalBudget,
+          completedTasks: completed,
+          avgProgress: total > 0 ? Math.round(progSum / total) : 0,
+          departmentStats
+        };
+      }
+
+      checkDependencyConflict(task) {
+        if (!task.dependencies || task.dependencies.length === 0) return null;
+        const taskStart = new Date(task.startDate);
+        for (const depId of task.dependencies) {
+          const dep = this.getTaskById(depId);
+          if (dep && new Date(dep.endDate) > taskStart) {
+            return { predecessor: dep, successor: task };
+          }
+        }
+        return null;
+      }
+
+      getUniqueAssignees() {
+        const s = new Set();
+        this.tasks.forEach(t => { if (t.assignee && t.assignee.trim()) s.add(t.assignee.trim()); });
+        return Array.from(s).sort();
+      }
+    }
+
+    const appStore = new Store();
+
+    // --- 5. RENDER DASHBOARD METRICS ---
+    function renderDashboardMetrics() {
+      const container = document.getElementById('dashboardMetricsContainer');
+      if (!container) return;
+      const m = appStore.getMetrics();
+      const isAr = currentLang === 'ar';
+      const cur = isAr ? 'ر.س' : 'SAR';
+      const budgetFmt = new Intl.NumberFormat(isAr ? 'ar-SA' : 'en-US', { maximumFractionDigits: 0 }).format(m.totalBudget);
+
+      const deptMeta = {
+        operations: { label: t('dept_operations'), color: 'from-blue-600 to-indigo-600' },
+        warehousing: { label: t('dept_warehousing'), color: 'from-amber-500 to-orange-500' },
+        marketing: { label: t('dept_marketing'), color: 'from-purple-500 to-pink-500' },
+        sales: { label: t('dept_sales'), color: 'from-emerald-500 to-teal-500' },
+        hr: { label: t('dept_hr'), color: 'from-cyan-500 to-blue-500' }
+      };
+
+      container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+          <div class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">${t('totalTasks')}</span>
+              <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+              </div>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+              <span class="text-3xl font-bold tracking-tight text-slate-900">${m.totalTasks}</span>
+              <span class="text-xs text-emerald-600 font-semibold">${m.completedTasks} ${t('status_completed')}</span>
+            </div>
+            <div class="mt-3 w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-slate-800 h-1.5 rounded-full" style="width: ${m.totalTasks > 0 ? (m.completedTasks / m.totalTasks * 100) : 0}%"></div>
+            </div>
+          </div>
+
+          <div class="bg-white border ${m.delayedTasks > 0 ? 'border-red-200 bg-red-50/20' : 'border-slate-200/80'} rounded-xl p-5 shadow-xs flex flex-col justify-between cursor-pointer" onclick="appStore.filters.status = appStore.filters.status === 'delayed' ? 'all' : 'delayed'; appStore.notify('filter_change');">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider ${m.delayedTasks > 0 ? 'text-red-600' : 'text-slate-500'}">${t('delayedTasks')}</span>
+              <div class="w-8 h-8 rounded-lg ${m.delayedTasks > 0 ? 'bg-red-100 text-red-600 animate-pulse' : 'bg-slate-100 text-slate-400'} flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              </div>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+              <span class="text-3xl font-bold tracking-tight ${m.delayedTasks > 0 ? 'text-red-600' : 'text-slate-900'}">${m.delayedTasks}</span>
+              <span class="text-xs ${m.delayedTasks > 0 ? 'px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-medium' : 'text-slate-400'}">${m.delayedTasks > 0 ? (isAr ? 'يتطلب التدخل' : 'Attention') : (isAr ? 'في المسار' : 'On Track')}</span>
+            </div>
+            <div class="mt-3 text-xs text-slate-400">${isAr ? 'انقر لتصفية المهام المتأخرة' : 'Click to filter delayed'}</div>
+          </div>
+
+          <div class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">${t('totalBudget')}</span>
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              </div>
+            </div>
+            <div class="mt-3 flex items-baseline gap-2">
+              <span class="text-2xl lg:text-3xl font-bold tracking-tight text-slate-900">${budgetFmt}</span>
+              <span class="text-xs font-semibold text-slate-500">${cur}</span>
+            </div>
+            <div class="mt-3 text-xs text-slate-400">${isAr ? 'الميزانية التشغيلية المعتمدة' : 'Operational Capex & Opex'}</div>
+          </div>
+
+          <div class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">${t('avgProgress')}</span>
+              <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+              </div>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+              <span class="text-3xl font-bold tracking-tight text-slate-900">${m.avgProgress}%</span>
+              <span class="text-xs font-medium text-slate-500">${isAr ? 'الإنجاز الكلي' : 'Total Completion'}</span>
+            </div>
+            <div class="mt-3 w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-blue-500 to-indigo-600 h-1.5 rounded-full" style="width: ${m.avgProgress}%"></div>
+            </div>
+          </div>
+
+          <button type="button" onclick="switchAppView('advertising-cost')" class="text-start bg-white border border-amber-200 rounded-xl p-5 shadow-xs flex flex-col justify-between hover:border-amber-400 hover:bg-amber-50/30 transition-colors">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider text-amber-700">Marketing Advertising Cost</span>
+              <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5h2m-1-1v2m-6 7h12m-10 0v6h8v-6m-9-6h10l1 6H6l1-6z" /></svg>
+              </div>
+            </div>
+            <div class="mt-3 flex items-baseline gap-2">
+              <span class="text-2xl lg:text-3xl font-bold tracking-tight text-slate-900">${numberEGP(advertisingGrandTotal())}</span>
+            </div>
+            <div class="mt-3 text-xs text-slate-500 truncate">${escapeHtml(advertisingCampaign.name || 'لم يتم إدخال اسم الحملة بعد')}</div>
+          </button>
+        </div>
+
+        <!-- Department Breakdown Strip -->
+        <div class="bg-white border border-slate-200/80 rounded-xl p-5 mb-6 shadow-xs">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-slate-800"></div>
+              <h3 class="text-sm font-semibold text-slate-800">${t('departmentProgress')}</h3>
+            </div>
+            <span class="text-xs text-slate-400">${isAr ? 'اضغط لتصفية المهام' : 'Click to filter'}</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            ${Object.entries(m.departmentStats).map(([k, d]) => {
+              const meta = deptMeta[k] || { label: k, color: 'from-slate-500 to-slate-700' };
+              const active = appStore.filters.department === k;
+              return `
+                <button type="button" class="text-start p-3 rounded-lg border transition-all cursor-pointer ${active ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-200/70 bg-slate-50/50 hover:bg-slate-50'}" onclick="appStore.filters.department = appStore.filters.department === '${k}' ? 'all' : '${k}'; appStore.notify('filter_change');">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xs font-semibold truncate ${active ? 'text-white' : 'text-slate-700'}">${meta.label}</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded font-mono ${active ? 'bg-slate-800 text-slate-200' : 'bg-slate-200/70 text-slate-600'}">${d.count}</span>
+                  </div>
+                  <div class="flex items-center justify-between text-xs mb-1">
+                    <span class="text-[11px] font-mono ${active ? 'text-slate-300' : 'text-slate-500'}">${d.avgProgress}%</span>
+                    <span class="text-[10px] font-mono ${active ? 'text-slate-300' : 'text-slate-400'}">${Math.round(d.budget / 1000)}k ${cur}</span>
+                  </div>
+                  <div class="w-full ${active ? 'bg-slate-800' : 'bg-slate-200'} rounded-full h-1 overflow-hidden">
+                    <div class="h-1 rounded-full bg-gradient-to-r ${meta.color}" style="width: ${d.avgProgress}%"></div>
+                  </div>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // --- 6. RENDER GANTT CHART ---
+    let dragState = null;
+    let currentDayWidth = 44;
+
+    function renderGanttChart() {
+      const container = document.getElementById('ganttChartContainer');
+      if (!container) return;
+
+      const tasks = appStore.getFilteredTasks();
+      const isAr = currentLang === 'ar';
+      const viewMode = appStore.viewMode;
+      const zoom = appStore.zoomLevel;
+
+      let dayW = 44 * zoom;
+      if (viewMode === 'weeks') dayW = 22 * zoom;
+      if (viewMode === 'months') dayW = 10 * zoom;
+      currentDayWidth = dayW;
+
+      // Range
+      let minDate = new Date();
+      let maxDate = new Date();
+      if (tasks.length > 0) {
+        const sDates = tasks.map(t => new Date(t.startDate).getTime()).filter(n => !isNaN(n));
+        const eDates = tasks.map(t => new Date(t.endDate).getTime()).filter(n => !isNaN(n));
+        if (sDates.length > 0) minDate = new Date(Math.min(...sDates));
+        if (eDates.length > 0) maxDate = new Date(Math.max(...eDates));
+      }
+
+      const pStart = new Date(minDate);
+      pStart.setDate(pStart.getDate() - 5);
+      pStart.setHours(0, 0, 0, 0);
+
+      const pEnd = new Date(maxDate);
+      pEnd.setDate(pEnd.getDate() + 12);
+      pEnd.setHours(0, 0, 0, 0);
+
+      const totalDays = Math.max(15, Math.round((pEnd - pStart) / 86400000) + 1);
+      const totalWidth = totalDays * dayW;
+
+      const days = [];
+      const months = [];
+      let curMonth = null, mDays = 0;
+
+      for (let i = 0; i < totalDays; i++) {
+        const d = new Date(pStart);
+        d.setDate(d.getDate() + i);
+        const mKey = `${d.getFullYear()}-${d.getMonth()}`;
+        if (!curMonth || curMonth.key !== mKey) {
+          if (curMonth) { curMonth.days = mDays; months.push(curMonth); }
+          curMonth = {
+            key: mKey,
+            label: d.toLocaleDateString(isAr ? 'ar-SA' : 'en-US', { month: 'long', year: 'numeric' }),
+            days: 0
+          };
+          mDays = 0;
+        }
+        mDays++;
+        days.push({
+          date: d,
+          dayNum: d.getDate(),
+          dayName: d.toLocaleDateString(isAr ? 'ar-SA' : 'en-US', { weekday: 'narrow' }),
+          isWeekend: d.getDay() === 5 || d.getDay() === 6,
+          isToday: new Date().toDateString() === d.toDateString(),
+          index: i
+        });
+      }
+      if (curMonth) { curMonth.days = mDays; months.push(curMonth); }
+
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const todayDiff = Math.round((today - pStart) / 86400000);
+      const todayLeft = (todayDiff >= 0 && todayDiff <= totalDays) ? (todayDiff * dayW + (dayW / 2)) : -1;
+
+      const deptColors = {
+        operations: { gradient: 'from-indigo-600 to-blue-600', border: 'border-indigo-700', pill: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+        warehousing: { gradient: 'from-amber-600 to-orange-500', border: 'border-amber-700', pill: 'bg-orange-50 text-orange-700 border-orange-200' },
+        marketing: { gradient: 'from-purple-600 to-pink-600', border: 'border-purple-700', pill: 'bg-purple-50 text-purple-700 border-purple-200' },
+        sales: { gradient: 'from-emerald-600 to-teal-600', border: 'border-emerald-700', pill: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+        hr: { gradient: 'from-cyan-600 to-blue-500', border: 'border-cyan-700', pill: 'bg-cyan-50 text-cyan-700 border-cyan-200' }
+      };
+
+      container.innerHTML = `
+        <div class="bg-white border border-slate-200/80 rounded-xl shadow-xs overflow-hidden flex flex-col h-[750px] relative">
+          <div class="flex-1 flex overflow-hidden relative">
+            
+            <!-- Left Pane -->
+            <div class="w-[420px] lg:w-[480px] shrink-0 border-e border-slate-200/80 flex flex-col bg-white z-10 select-none shadow-xs">
+              <div class="h-[74px] border-b border-slate-200/80 bg-slate-50/70 px-4 flex items-center justify-between text-xs font-semibold text-slate-600">
+                <div class="flex items-center gap-3">
+                  <span class="w-16">${t('idHeader')}</span>
+                  <span class="flex-1">${t('nameHeader')}</span>
+                </div>
+                <div class="flex items-center gap-4 text-slate-500">
+                  <span class="w-18 text-center">${t('deptHeader')}</span>
+                  <span class="w-16 text-center">${t('statusHeader')}</span>
+                  <span class="w-12 text-end">${t('progressHeader')}</span>
+                </div>
+              </div>
+
+              <div class="flex-1 overflow-y-auto divide-y divide-slate-100 scrollbar-thin" id="ganttLeftRows">
+                ${tasks.map(t => {
+                  const dc = deptColors[t.department] || { pill: 'bg-slate-100 text-slate-700 border-slate-200' };
+                  const conflict = appStore.checkDependencyConflict(t);
+                  const isSelected = appStore.selectedTaskId === t.id;
+                  return `
+                    <div class="h-[52px] px-4 flex items-center justify-between hover:bg-slate-50/80 cursor-pointer transition-colors text-xs ${isSelected ? 'bg-indigo-50/80 font-medium ring-1 ring-inset ring-indigo-400' : ''}" onclick="openTaskModal('${t.id}')">
+                      <div class="flex items-center gap-3 min-w-0 flex-1">
+                        <span class="w-16 font-mono text-[11px] text-slate-500 shrink-0 flex items-center gap-1">
+                          ${t.id} ${conflict ? '<span class="text-rose-600 font-bold" title="تعارض تبعية">⚠️</span>' : ''}
+                        </span>
+                        <span class="truncate font-medium text-slate-800 flex-1 pe-2">${isAr ? t.name : (t.nameEn || t.name)}</span>
+                      </div>
+                      <div class="flex items-center gap-3 shrink-0">
+                        <span class="w-20 truncate text-[11px] px-2 py-0.5 rounded-md border text-center font-medium ${dc.pill}">
+                          ${translations[currentLang]['dept_' + t.department] || t.department}
+                        </span>
+                        <span class="w-18 text-center text-[10px] font-medium px-2 py-0.5 rounded-full border ${t.status === 'completed' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : t.status === 'delayed' ? 'bg-red-50 text-red-700 border-red-200 animate-pulse' : t.status === 'in_progress' ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-slate-100 text-slate-600 border-slate-200'}">
+                          ${translations[currentLang]['status_' + t.status] || t.status}
+                        </span>
+                        <span class="w-12 text-end font-mono text-[11px] text-slate-600">${t.progress}%</span>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <div class="h-11 border-t border-slate-200/80 bg-slate-50/50 px-4 flex items-center justify-between text-xs text-slate-500">
+                <span>${tasks.length} ${isAr ? 'مهمة' : 'tasks'}</span>
+                <button type="button" class="text-indigo-600 hover:text-indigo-700 font-bold flex items-center gap-1 cursor-pointer" onclick="openTaskModal(null)">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" /></svg>
+                  <span>${t('newTask')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Pane: Canvas -->
+            <div class="flex-1 flex flex-col overflow-x-auto overflow-y-hidden bg-slate-50/30 relative select-none scrollbar-thin" id="ganttRightCanvas" style="direction: ltr;">
+              <div style="width: ${Math.max(800, totalWidth)}px;" class="flex flex-col h-full relative">
+                
+                <!-- Timeline Header -->
+                <div class="h-[74px] shrink-0 border-b border-slate-200/80 bg-white/95 backdrop-blur-xs sticky top-0 z-20 flex flex-col">
+                  <div class="h-[36px] border-b border-slate-100 flex items-center">
+                    ${months.map(m => `
+                      <div style="width: ${m.days * dayW}px;" class="px-3 text-xs font-semibold text-slate-700 border-r border-slate-100 truncate">${m.label}</div>
+                    `).join('')}
+                  </div>
+                  <div class="h-[38px] flex items-center">
+                    ${days.map(d => `
+                      <div style="width: ${dayW}px;" class="h-full flex flex-col items-center justify-center text-[10px] border-r border-slate-100/80 ${d.isWeekend ? 'bg-slate-100/40 text-slate-400' : 'text-slate-600'} ${d.isToday ? 'bg-indigo-50/70 font-bold text-indigo-700' : ''}">
+                        <span class="font-medium">${viewMode === 'days' ? d.dayNum : (d.dayNum % 7 === 1 ? d.dayNum : '')}</span>
+                        ${viewMode === 'days' ? `<span class="text-[9px] text-slate-400">${d.dayName}</span>` : ''}
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <!-- Timeline Body -->
+                <div class="flex-1 overflow-y-auto relative scrollbar-thin" id="ganttRightRows">
+                  
+                  <!-- Grid -->
+                  <div class="absolute inset-0 pointer-events-none flex h-full">
+                    ${days.map(d => `
+                      <div style="width: ${dayW}px;" class="h-full border-r border-slate-100/80 shrink-0 ${d.isWeekend ? 'bg-slate-100/25' : ''} ${d.isToday ? 'bg-indigo-50/30' : ''}"></div>
+                    `).join('')}
+                  </div>
+
+                  <!-- Today Line -->
+                  ${todayLeft >= 0 ? `
+                    <div class="absolute top-0 bottom-0 pointer-events-none z-10 flex flex-col items-center" style="left: ${todayLeft}px;">
+                      <div class="px-1.5 py-0.5 rounded bg-red-600 text-[9px] font-bold text-white shadow-xs tracking-wider uppercase mb-0.5">${isAr ? 'اليوم' : 'Today'}</div>
+                      <div class="w-0.5 bg-red-500 h-full shadow-sm"></div>
+                    </div>
+                  ` : ''}
+
+                  <!-- SVG Dependencies Canvas -->
+                  <svg class="absolute inset-0 w-full h-full pointer-events-none z-10" id="ganttDependencySvg">
+                    <defs>
+                      <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0, 7 3.5, 0 7" fill="#64748b" /></marker>
+                      <marker id="arrowhead-active" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#4f46e5" /></marker>
+                      <marker id="arrowhead-conflict" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#e11d48" /></marker>
+                    </defs>
+                  </svg>
+
+                  <!-- Task Bars -->
+                  <div class="relative py-0 z-10">
+                    ${tasks.map(t => {
+                      const tStart = new Date(t.startDate); tStart.setHours(0, 0, 0, 0);
+                      const sOffset = Math.round((tStart - pStart) / 86400000);
+                      const bLeft = Math.max(0, sOffset * dayW);
+                      const bWidth = Math.max(dayW * 0.9, t.duration * dayW);
+                      const dc = deptColors[t.department] || { gradient: 'from-slate-700 to-slate-800', border: 'border-slate-800' };
+                      const conflict = appStore.checkDependencyConflict(t);
+                      const isSelected = appStore.selectedTaskId === t.id;
+
+                      return `
+                        <div class="h-[52px] relative flex items-center border-b border-transparent">
+                          <div class="gantt-task-bar absolute h-[32px] rounded-lg shadow-xs cursor-pointer select-none transition-all flex items-center overflow-hidden border ${dc.border} ${isSelected ? 'ring-2 ring-indigo-500 shadow-md highlight-new-task' : ''} ${conflict ? 'border-rose-500 ring-1 ring-rose-400' : ''}"
+                               style="left: ${bLeft}px; width: ${bWidth}px; background-color: #1e293b;"
+                               data-task-id="${t.id}">
+                            <div class="absolute inset-0 bg-gradient-to-r ${dc.gradient} opacity-90"></div>
+                            <div class="absolute inset-y-0 left-0 bg-white/20 border-r border-white/30 backdrop-brightness-110 pointer-events-none" style="width: ${t.progress}%;"></div>
+                            <div class="gantt-resize-handle gantt-resize-left absolute inset-y-0 left-0 w-2.5 hover:w-3 bg-white/30 hover:bg-white/70 cursor-ew-resize z-20" data-action="resize-left" data-task-id="${t.id}" title="${translations[currentLang].dragToResize || translations.en.dragToResize}"></div>
+                            <div class="relative z-10 px-3 flex items-center justify-between w-full text-white text-[11px] font-medium pointer-events-none drop-shadow-xs">
+                              <span class="truncate pe-2 flex items-center gap-1.5">
+                                <span class="font-bold font-mono text-[10px] opacity-80">${t.id}</span>
+                                <span class="truncate">${isAr ? t.name : (t.nameEn || t.name)}</span>
+                              </span>
+                              <span class="font-mono text-[10px] opacity-90 shrink-0 font-bold bg-black/20 px-1.5 py-0.5 rounded">${t.progress}%</span>
+                            </div>
+                            <div class="gantt-resize-handle gantt-resize-right absolute inset-y-0 right-0 w-2.5 hover:w-3 bg-white/30 hover:bg-white/70 cursor-ew-resize z-20" data-action="resize-right" data-task-id="${t.id}" title="${translations[currentLang].dragToResize || translations.en.dragToResize}"></div>
+                          </div>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
+
+      // Sync scroll
+      const leftRows = container.querySelector('#ganttLeftRows');
+      const rightRows = container.querySelector('#ganttRightRows');
+      if (leftRows && rightRows) {
+        let sc = false;
+        leftRows.onscroll = () => { if (!sc) { sc = true; rightRows.scrollTop = leftRows.scrollTop; sc = false; } };
+        rightRows.onscroll = () => { if (!sc) { sc = true; leftRows.scrollTop = rightRows.scrollTop; sc = false; } };
+      }
+
+      // Bar interactions
+      const bars = container.querySelectorAll('.gantt-task-bar');
+      bars.forEach(b => {
+        const id = b.getAttribute('data-task-id');
+        b.onpointerdown = (e) => {
+          const act = e.target.getAttribute('data-action');
+          const t = appStore.getTaskById(id);
+          if (!t) return;
+          dragState = {
+            type: act || 'move',
+            taskId: id,
+            startX: e.clientX,
+            initStart: t.startDate,
+            initEnd: t.endDate,
+            bar: b,
+            dayW,
+            hasMoved: false
+          };
+          b.setPointerCapture(e.pointerId);
+          e.stopPropagation();
+        };
+
+        b.onclick = () => {
+          if (dragState && dragState.hasMoved) return;
+          openTaskModal(id);
+        };
+      });
+
+      // Render Dependency Curves
+      setTimeout(renderDependencies, 50);
+    }
+
+    // Dependency lines
+    function renderDependencies() {
+      const svg = document.getElementById('ganttDependencySvg');
+      if (!svg) return;
+      svg.querySelectorAll('path').forEach(p => p.remove());
+
+      const tasks = appStore.getFilteredTasks();
+      const map = new Map(tasks.map(t => [t.id, t]));
+
+      tasks.forEach(task => {
+        if (!task.dependencies) return;
+        task.dependencies.forEach(depId => {
+          const pred = map.get(depId);
+          if (!pred) return;
+          const predBar = document.querySelector(`.gantt-task-bar[data-task-id="${depId}"]`);
+          const succBar = document.querySelector(`.gantt-task-bar[data-task-id="${task.id}"]`);
+          if (!predBar || !succBar) return;
+
+          const pr = predBar.getBoundingClientRect();
+          const sr = succBar.getBoundingClientRect();
+          const svgr = svg.getBoundingClientRect();
+
+          const x1 = pr.right - svgr.left;
+          const y1 = pr.top + pr.height / 2 - svgr.top;
+          const x2 = sr.left - svgr.left;
+          const y2 = sr.top + sr.height / 2 - svgr.top;
+
+          const isConflict = x1 > x2;
+          let color = isConflict ? '#e11d48' : '#94a3b8';
+          let marker = isConflict ? 'url(#arrowhead-conflict)' : 'url(#arrowhead)';
+
+          let d = '';
+          if (!isConflict) {
+            const dx = Math.max(16, (x2 - x1) * 0.45);
+            d = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2 - 4} ${y2}`;
+          } else {
+            d = `M ${x1} ${y1} L ${x1 + 12} ${y1} L ${x1 + 12} ${y1 + 24} L ${x2 - 16} ${y1 + 24} L ${x2 - 16} ${y2} L ${x2 - 4} ${y2}`;
+          }
+
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', d);
+          path.setAttribute('fill', 'none');
+          path.setAttribute('stroke', color);
+          path.setAttribute('stroke-width', '1.75');
+          path.setAttribute('marker-end', marker);
+          if (isConflict) path.setAttribute('stroke-dasharray', '4,3');
+          svg.appendChild(path);
+        });
+      });
+    }
+
+    // Window drag handlers
+    window.addEventListener('pointermove', (e) => {
+      if (!dragState) return;
+      const dx = e.clientX - dragState.startX;
+      if (Math.abs(dx) > 4) dragState.hasMoved = true;
+      const dShift = Math.round(dx / dragState.dayW);
+
+      if (dragState.type === 'move') {
+        dragState.bar.style.transform = `translateX(${dShift * dragState.dayW}px)`;
+      } else if (dragState.type === 'resize-right') {
+        const newEnd = appStore.addDays(dragState.initEnd, dShift);
+        const cd = appStore.calculateDuration(dragState.initStart, newEnd);
+        if (cd >= 1) dragState.bar.style.width = `${cd * dragState.dayW}px`;
+      } else if (dragState.type === 'resize-left') {
+        const newStart = appStore.addDays(dragState.initStart, dShift);
+        const cd = appStore.calculateDuration(newStart, dragState.initEnd);
+        if (cd >= 1) {
+          dragState.bar.style.transform = `translateX(${dShift * dragState.dayW}px)`;
+          dragState.bar.style.width = `${cd * dragState.dayW}px`;
+        }
+      }
+    });
+
+    window.addEventListener('pointerup', (e) => {
+      if (!dragState) return;
+      const dx = e.clientX - dragState.startX;
+      const dShift = Math.round(dx / dragState.dayW);
+      dragState.bar.style.transform = '';
+
+      if (dragState.hasMoved && dShift !== 0) {
+        if (dragState.type === 'move') {
+          appStore.updateTaskDates(dragState.taskId, appStore.addDays(dragState.initStart, dShift), appStore.addDays(dragState.initEnd, dShift));
+        } else if (dragState.type === 'resize-right') {
+          appStore.updateTaskDates(dragState.taskId, dragState.initStart, appStore.addDays(dragState.initEnd, dShift));
+        } else if (dragState.type === 'resize-left') {
+          appStore.updateTaskDates(dragState.taskId, appStore.addDays(dragState.initStart, dShift), dragState.initEnd);
+        }
+      }
+      dragState = null;
+      renderGanttChart();
+    });
+
+    // --- 7. TASK MODAL ---
+    let editingTaskId = null;
+    let modalDeliverables = [];
+
+    function openTaskModal(id) {
+      editingTaskId = id;
+      const task = id ? appStore.getTaskById(id) : null;
+      modalDeliverables = task ? JSON.parse(JSON.stringify(task.deliverables || [])) : [
+        { id: 'del-1', text: currentLang === 'ar' ? 'اعتماد خطة العمل والميزانية' : 'Approve work plan & budget', completed: false },
+        { id: 'del-2', text: currentLang === 'ar' ? 'توفير التجهيزات والمواد اللازمة' : 'Secure required materials & tools', completed: false }
+      ];
+      renderTaskModal();
+      setTimeout(() => {
+        const input = document.getElementById('mName');
+        if (input) input.focus();
+      }, 50);
+    }
+
+    function closeTaskModal() {
+      const container = document.getElementById('taskModalContainer');
+      if (container) {
+        container.classList.add('hidden');
+        container.innerHTML = '';
+      }
+      editingTaskId = null;
+    }
+
+    function renderTaskModal() {
+      const container = document.getElementById('taskModalContainer');
+      if (!container) return;
+      const isEdit = !!editingTaskId;
+      const task = isEdit ? appStore.getTaskById(editingTaskId) : null;
+      const all = appStore.getAllTasks();
+      const isAr = currentLang === 'ar';
+
+      const defaultStart = '2026-10-01';
+      const defaultEnd = '2026-10-15';
+
+      const taskId = task ? task.id : appStore.generateNextId();
+      const name = task ? task.name : '';
+      const dept = task ? task.department : 'operations';
+      const start = task ? task.startDate : defaultStart;
+      const end = task ? task.endDate : defaultEnd;
+      const dur = task ? task.duration : appStore.calculateDuration(start, end);
+      const cost = task ? task.cost : 25000;
+      const assignee = task ? task.assignee : '';
+      const status = task ? task.status : 'not_started';
+      const prog = task ? task.progress : 0;
+      const prio = task ? task.priority : 'medium';
+      const notes = task ? (task.notes || '') : '';
+      const deps = task ? (task.dependencies || []) : [];
+
+      const availablePrev = all.filter(t => t.id !== taskId);
+      const conflict = task ? appStore.checkDependencyConflict(task) : null;
+
+      container.innerHTML = `
+        <div class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div class="bg-white rounded-2xl shadow-2xl border border-slate-200/80 w-full max-w-3xl overflow-hidden flex flex-col max-h-[92vh]">
+            
+            <div class="px-6 py-4.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
+              <div class="flex items-center gap-3">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-slate-900 text-white">${taskId}</span>
+                <h2 class="text-base font-bold text-slate-900">${isEdit ? t('editTask') : t('createTask')}</h2>
+              </div>
+              <div class="flex items-center gap-2">
+                ${isEdit ? `
+                  <button type="button" class="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-200/60 rounded-lg text-xs flex items-center gap-1 cursor-pointer" onclick="appStore.duplicateTask('${taskId}'); closeTaskModal();" title="${t('duplicate')}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    <span>${t('duplicate')}</span>
+                  </button>
+                  <button type="button" class="p-1.5 text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-lg text-xs flex items-center gap-1 cursor-pointer" onclick="if(confirm('${t('confirmDelete')}')){appStore.deleteTask('${taskId}'); closeTaskModal();}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    <span>${t('delete')}</span>
+                  </button>
+                ` : ''}
+                <button type="button" onclick="closeTaskModal()" class="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg cursor-pointer">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+              </div>
+            </div>
+
+            ${conflict ? `
+              <div class="px-6 py-2 bg-rose-50 border-b border-rose-200 text-rose-800 text-xs flex items-center gap-2">
+                <span>⚠️</span>
+                <span><strong>${t('dependencyConflict')}</strong> المهمة السابقة (${conflict.predecessor.id}) تنتهي في ${conflict.predecessor.endDate} وهو أحدث من تاريخ بدء هذه المهمة (${start}).</span>
+              </div>
+            ` : ''}
+
+            <form id="modalTaskForm" class="flex-1 overflow-y-auto p-6 space-y-5 scrollbar-thin" onsubmit="event.preventDefault(); saveModalTask();">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('taskNameLabel')} *</label>
+                <input type="text" id="mName" required value="${name}" placeholder="${isAr ? 'مثال: جرد مستودع التبريد المركزي...' : 'e.g. Cold storage audit...'}" class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-slate-300 focus:border-indigo-600 outline-none" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('departmentLabel')}</label>
+                  <select id="mDept" class="w-full text-sm px-3 py-2 rounded-lg border border-slate-300 bg-white">
+                    <option value="operations" ${dept === 'operations' ? 'selected' : ''}>${t('dept_operations')}</option>
+                    <option value="warehousing" ${dept === 'warehousing' ? 'selected' : ''}>${t('dept_warehousing')}</option>
+                    <option value="marketing" ${dept === 'marketing' ? 'selected' : ''}>${t('dept_marketing')}</option>
+                    <option value="sales" ${dept === 'sales' ? 'selected' : ''}>${t('dept_sales')}</option>
+                    <option value="hr" ${dept === 'hr' ? 'selected' : ''}>${t('dept_hr')}</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('statusLabel')}</label>
+                  <select id="mStatus" class="w-full text-sm px-3 py-2 rounded-lg border border-slate-300 bg-white">
+                    <option value="not_started" ${status === 'not_started' ? 'selected' : ''}>${t('status_not_started')}</option>
+                    <option value="in_progress" ${status === 'in_progress' ? 'selected' : ''}>${t('status_in_progress')}</option>
+                    <option value="completed" ${status === 'completed' ? 'selected' : ''}>${t('status_completed')}</option>
+                    <option value="delayed" ${status === 'delayed' ? 'selected' : ''}>${t('status_delayed')}</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('priorityLabel')}</label>
+                  <select id="mPriority" class="w-full text-sm px-3 py-2 rounded-lg border border-slate-300 bg-white">
+                    <option value="high" ${prio === 'high' ? 'selected' : ''}>${t('priority_high')}</option>
+                    <option value="medium" ${prio === 'medium' ? 'selected' : ''}>${t('priority_medium')}</option>
+                    <option value="low" ${prio === 'low' ? 'selected' : ''}>${t('priority_low')}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('startDateLabel')}</label>
+                  <input type="date" id="mStart" value="${start}" onchange="updateCalcDur()" class="w-full text-sm px-3 py-1.5 rounded-lg border border-slate-300 bg-white" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('endDateLabel')}</label>
+                  <input type="date" id="mEnd" value="${end}" onchange="updateCalcDur()" class="w-full text-sm px-3 py-1.5 rounded-lg border border-slate-300 bg-white" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('durationLabel')}</label>
+                  <div class="flex items-center gap-2 h-[34px] px-3 bg-white rounded-lg border border-slate-200 text-slate-800 font-mono text-sm font-semibold">
+                    <span id="mDurSpan">${dur}</span> <span class="text-xs text-slate-400 font-normal">${t('durationUnit')}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-slate-50/50 p-4 rounded-xl border border-slate-200">
+                <div class="flex items-center justify-between mb-2">
+                  <label class="text-xs font-semibold text-slate-700">${t('progressLabel')}</label>
+                  <div class="font-mono text-sm font-bold text-indigo-600"><span id="mProgSpan">${prog}</span>%</div>
+                </div>
+                <input type="range" id="mProg" min="0" max="100" step="5" value="${prog}" oninput="document.getElementById('mProgSpan').textContent = this.value; if(this.value == 100) document.getElementById('mStatus').value = 'completed';" class="w-full accent-indigo-600 cursor-pointer" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('costLabel')} (${t('currencySymbol')})</label>
+                  <input type="number" id="mCost" min="0" step="500" value="${cost}" class="w-full text-sm px-3.5 py-2 rounded-lg border border-slate-300 font-mono" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('assigneeLabel')}</label>
+                  <input type="text" id="mAssignee" value="${assignee}" placeholder="${isAr ? 'الاسم أو الفريق...' : 'Name or team...'}" class="w-full text-sm px-3.5 py-2 rounded-lg border border-slate-300" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('dependenciesLabel')}</label>
+                <div class="border border-slate-200 rounded-lg p-3 max-h-36 overflow-y-auto space-y-1.5 bg-slate-50/40">
+                  ${availablePrev.length === 0 ? `<p class="text-xs text-slate-400">${t('noDependencies')}</p>` : availablePrev.map(p => `
+                    <label class="flex items-center gap-2.5 text-xs hover:bg-white p-1.5 rounded cursor-pointer">
+                      <input type="checkbox" name="mDep" value="${p.id}" ${deps.includes(p.id) ? 'checked' : ''} class="rounded border-slate-300 text-indigo-600" />
+                      <span class="font-mono font-semibold text-slate-700">${p.id}</span>
+                      <span class="text-slate-600 truncate flex-1">${isAr ? p.name : (p.nameEn || p.name)}</span>
+                      <span class="text-[10px] text-slate-400 font-mono">${p.endDate}</span>
+                    </label>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/30">
+                <div class="flex items-center justify-between mb-2.5">
+                  <label class="text-xs font-semibold text-slate-800">${t('deliverablesLabel')}</label>
+                  <span class="text-[11px] text-slate-500" id="mDelCounter">${modalDeliverables.filter(d => d.completed).length} / ${modalDeliverables.length}</span>
+                </div>
+                <div class="space-y-2 mb-3" id="mDelList">
+                  ${modalDeliverables.map((d, i) => `
+                    <div class="flex items-center gap-2 p-2 bg-white rounded-lg border border-slate-200">
+                      <input type="checkbox" onchange="modalDeliverables[${i}].completed = this.checked; renderDeliverablesList();" ${d.completed ? 'checked' : ''} class="rounded text-emerald-600 cursor-pointer" />
+                      <span class="text-xs flex-1 ${d.completed ? 'line-through text-slate-400' : 'text-slate-800'}">${d.text}</span>
+                      <button type="button" onclick="modalDeliverables.splice(${i}, 1); renderDeliverablesList();" class="text-slate-400 hover:text-rose-600 p-1 cursor-pointer">✕</button>
+                    </div>
+                  `).join('')}
+                </div>
+                <div class="flex gap-2">
+                  <input type="text" id="mNewDel" placeholder="${t('addDeliverablePlaceholder')}" class="flex-1 text-xs px-3 py-2 rounded-lg border border-slate-300" onkeydown="if(event.key==='Enter'){event.preventDefault(); addDelItem();}" />
+                  <button type="button" onclick="addDelItem()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-lg cursor-pointer">${t('addItemBtn')}</button>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">${t('notesLabel')}</label>
+                <textarea id="mNotes" rows="2" class="w-full text-xs px-3.5 py-2 rounded-lg border border-slate-300">${notes}</textarea>
+              </div>
+
+              <button type="submit" class="hidden">submit</button>
+            </form>
+
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/70 flex items-center justify-between">
+              <button type="button" onclick="closeTaskModal()" class="px-4 py-2 text-xs font-medium text-slate-600 cursor-pointer">${t('cancel')}</button>
+              <button type="button" onclick="saveModalTask()" class="px-5 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm cursor-pointer">
+                ${isEdit ? t('saveChanges') : t('saveNew')}
+              </button>
+            </div>
+
+          </div>
+        </div>
+      `;
+
+      container.classList.remove('hidden');
+    }
+
+    function updateCalcDur() {
+      const s = document.getElementById('mStart').value;
+      const e = document.getElementById('mEnd').value;
+      const durSpan = document.getElementById('mDurSpan');
+      if (durSpan) durSpan.textContent = appStore.calculateDuration(s, e);
+    }
+
+    function renderDeliverablesList() {
+      const list = document.getElementById('mDelList');
+      if (!list) return;
+      list.innerHTML = modalDeliverables.map((d, i) => `
+        <div class="flex items-center gap-2 p-2 bg-white rounded-lg border border-slate-200">
+          <input type="checkbox" onchange="modalDeliverables[${i}].completed = this.checked; renderDeliverablesList();" ${d.completed ? 'checked' : ''} class="rounded text-emerald-600 cursor-pointer" />
+          <span class="text-xs flex-1 ${d.completed ? 'line-through text-slate-400' : 'text-slate-800'}">${d.text}</span>
+          <button type="button" onclick="modalDeliverables.splice(${i}, 1); renderDeliverablesList();" class="text-slate-400 hover:text-rose-600 p-1 cursor-pointer">✕</button>
+        </div>
+      `).join('');
+      const counter = document.getElementById('mDelCounter');
+      if (counter) counter.textContent = `${modalDeliverables.filter(d => d.completed).length} / ${modalDeliverables.length}`;
+    }
+
+    function addDelItem() {
+      const input = document.getElementById('mNewDel');
+      const val = (input ? input.value : '').trim();
+      if (!val) return;
+      modalDeliverables.push({ id: `del-${Date.now()}`, text: val, completed: false });
+      if (input) input.value = '';
+      renderDeliverablesList();
+    }
+
+    function saveModalTask() {
+      const nameInput = document.getElementById('mName');
+      if (!nameInput) return;
+      const name = nameInput.value.trim();
+      if (!name) {
+        alert(currentLang === 'ar' ? 'يرجى كتابة اسم المهمة أولاً' : 'Please provide a task name first');
+        nameInput.focus();
+        return;
+      }
+
+      const startDateVal = document.getElementById('mStart').value;
+      const endDateVal = document.getElementById('mEnd').value;
+      if (startDateVal && endDateVal && endDateVal < startDateVal) {
+        alert(currentLang === 'ar' ? 'تاريخ الانتهاء يجب أن يكون بعد أو مساوياً لتاريخ البدء' : 'End date must be on or after start date');
+        return;
+      }
+
+      const deps = [];
+      document.querySelectorAll('input[name="mDep"]:checked').forEach(cb => deps.push(cb.value));
+
+      const payload = {
+        name,
+        nameEn: name,
+        department: document.getElementById('mDept').value,
+        status: document.getElementById('mStatus').value,
+        priority: document.getElementById('mPriority').value,
+        startDate: startDateVal,
+        endDate: endDateVal,
+        progress: parseInt(document.getElementById('mProg').value, 10),
+        cost: parseFloat(document.getElementById('mCost').value) || 0,
+        assignee: document.getElementById('mAssignee').value.trim(),
+        assigneeEn: document.getElementById('mAssignee').value.trim(),
+        dependencies: deps,
+        deliverables: modalDeliverables,
+        notes: document.getElementById('mNotes').value.trim()
+      };
+
+      // Reset any active filter so the new task is immediately visible
+      if (!editingTaskId) {
+        appStore.filters = { search: '', department: 'all', status: 'all', priority: 'all', assignee: 'all' };
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) searchInput.value = '';
+        const deptSelect = document.getElementById('deptFilterSelect');
+        if (deptSelect) deptSelect.value = 'all';
+        const statusSelect = document.getElementById('statusFilterSelect');
+        if (statusSelect) statusSelect.value = 'all';
+        const prioritySelect = document.getElementById('priorityFilterSelect');
+        if (prioritySelect) prioritySelect.value = 'all';
+        const assigneeSelect = document.getElementById('assigneeFilterSelect');
+        if (assigneeSelect) assigneeSelect.value = 'all';
+      }
+
+      let savedTask = null;
+      if (editingTaskId) {
+        savedTask = appStore.updateTask(editingTaskId, payload);
+        showToast(currentLang === 'ar' ? `تم تحديث المهمة [${editingTaskId}] بنجاح` : `Task [${editingTaskId}] updated successfully`);
+      } else {
+        savedTask = appStore.addTask(payload);
+        showToast(currentLang === 'ar' ? `✅ تم إنشاء المهمة بنجاح [${savedTask.id}]: ${savedTask.name}` : `✅ Task [${savedTask.id}] created successfully`);
+        setTimeout(() => {
+          const leftRows = document.getElementById('ganttLeftRows');
+          if (leftRows) leftRows.scrollTop = 0;
+          const rightRows = document.getElementById('ganttRightRows');
+          if (rightRows) rightRows.scrollTop = 0;
+        }, 50);
+      }
+
+      closeTaskModal();
+    }
+
+    // --- 8. DATA IMPORT/EXPORT ---
+    function exportCSV() {
+      const tasks = appStore.getAllTasks();
+      const isAr = currentLang === 'ar';
+      const headers = isAr ? [
+        "رقم المهمة (Task ID)", "اسم المهمة (Task Name)", "الإدارة (Department)",
+        "تاريخ البدء (Start Date)", "تاريخ الانتهاء (End Date)", "المدة بالأيام (Duration)",
+        "التكلفة (Cost SAR)", "الموكل بالمهمة (Assignee)", "المسمى الوظيفي (Role)",
+        "التبعيات (Dependencies)", "الحالة (Status)", "نسبة الإنجاز (Progress %)",
+        "الأولوية (Priority)", "العناصر والمخرجات (Deliverables)", "ملاحظات (Notes)"
+      ] : [
+        "Task ID", "Task Name", "Department", "Start Date", "End Date", "Duration",
+        "Cost", "Assignee", "Role", "Dependencies", "Status", "Progress", "Priority",
+        "Deliverables", "Notes"
+      ];
+
+      const esc = (v) => {
+        let str = String(v ?? '');
+        if (str.includes('"') || str.includes(',') || str.includes('\n')) str = '"' + str.replace(/"/g, '""') + '"';
+        return str;
+      };
+
+      const rows = tasks.map(t => [
+        esc(t.id), esc(t.name), esc(t.department), esc(t.startDate), esc(t.endDate), esc(t.duration),
+        esc(t.cost), esc(t.assignee), esc(t.assigneeRole || ''), esc((t.dependencies || []).join(';')),
+        esc(t.status), esc(t.progress), esc(t.priority),
+        esc((t.deliverables || []).map(d => `${d.completed ? '[x]' : '[ ]'} ${d.text}`).join('; ')),
+        esc(t.notes || '')
+      ].join(','));
+
+      const csv = "\uFEFF" + [headers.join(','), ...rows].join('\r\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `retail_tasks_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+    }
+
+    function exportJSON() {
+      const tasks = appStore.getAllTasks();
+      const blob = new Blob([JSON.stringify(tasks, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `retail_tasks_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+    }
+
+    // --- 9. DAILY MARKETING REPORTS ---
+    const DAILY_REPORTS_STORAGE_KEY = 'retail_flow_daily_marketing_reports_v1';
+    let dailyReports = [];
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+    }
+
+    function formatArabicDate(value) {
+      if (!value) return '';
+      const date = new Date(`${value}T12:00:00`);
+      return isNaN(date.getTime()) ? value : new Intl.DateTimeFormat('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+    }
+
+    function loadDailyReports() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(DAILY_REPORTS_STORAGE_KEY) || '[]');
+        dailyReports = Array.isArray(saved) ? saved : [];
+      } catch (error) { dailyReports = []; }
+    }
+
+    function saveDailyReports() {
+      localStorage.setItem(DAILY_REPORTS_STORAGE_KEY, JSON.stringify(dailyReports));
+      renderDailyReports();
+    }
+
+    function resetDailyReportForm() {
+      const form = document.getElementById('dailyReportForm');
+      if (!form) return;
+      form.reset();
+      document.getElementById('dailyReportId').value = '';
+      document.getElementById('dailyReportDate').value = new Date().toISOString().slice(0, 10);
+      document.getElementById('dailyReportType').value = 'قرار';
+      document.getElementById('dailyReportCustomType').value = '';
+    }
+
+    function editDailyReport(id) {
+      const report = dailyReports.find(item => item.id === id);
+      if (!report) return;
+      document.getElementById('dailyReportId').value = report.id;
+      document.getElementById('dailyReportDate').value = report.date;
+      const normalizedType = report.type === 'سوشي ميديا' ? 'سوشيال ميديا' : report.type;
+      const standardTypes = ['قرار', 'سوشيال ميديا', 'ويب سايت', 'فروع', 'اتفاق تجاري'];
+      document.getElementById('dailyReportType').value = standardTypes.includes(normalizedType) ? normalizedType : 'أخرى';
+      document.getElementById('dailyReportCustomType').value = standardTypes.includes(normalizedType) ? '' : normalizedType;
+      document.getElementById('dailyReportTitle').value = report.title;
+      document.getElementById('dailyReportNotes').value = report.notes;
+      document.getElementById('dailyReportLink').value = report.link || '';
+      document.getElementById('dailyReportView').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('dailyReportTitle').focus();
+    }
+
+    function deleteDailyReport(id) {
+      if (!confirm('هل تريد حذف هذا التقرير اليومي؟')) return;
+      dailyReports = dailyReports.filter(item => item.id !== id);
+      saveDailyReports();
+      showToast('تم حذف التقرير اليومي.');
+    }
+
+    function buildDailyReportDocument(report) {
+      const safeLink = /^https?:\/\//i.test(report.link || '') ? report.link : '';
+      const linkBlock = safeLink ? `<div class="row"><strong>الرابط:</strong> <a href="${escapeHtml(safeLink)}">${escapeHtml(safeLink)}</a></div>` : '';
+      return `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>تقرير يومي - ${escapeHtml(report.title)}</title><style>body{font-family:Tahoma,Arial,sans-serif;color:#172033;margin:44px;line-height:1.8}.head{border-bottom:3px solid #c026d3;padding-bottom:18px;margin-bottom:28px}h1{font-size:25px;margin:0 0 5px}.brand{color:#a21caf;font-size:14px;font-weight:bold}.meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}.box,.row{background:#faf5ff;border:1px solid #f5d0fe;border-radius:8px;padding:12px}.content{white-space:pre-wrap;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:18px;min-height:160px}a{color:#a21caf;word-break:break-all}@media print{body{margin:25px}}</style></head><body><div class="head"><div class="brand">MARKETING FLOW · إدارة التسويق</div><h1>تقرير العمل اليومي</h1></div><div class="meta"><div class="box"><strong>التاريخ</strong><br>${escapeHtml(formatArabicDate(report.date))}</div><div class="box"><strong>نوع المهمة</strong><br>${escapeHtml(report.type)}</div></div><div class="row"><strong>عنوان العمل:</strong> ${escapeHtml(report.title)}</div><h3>ما تم عمله</h3><div class="content">${escapeHtml(report.notes)}</div>${linkBlock}<script>window.onload=()=>window.print();<\/script></body></html>`;
+    }
+
+    function exportDailyReportPdf(id) {
+      const report = dailyReports.find(item => item.id === id);
+      if (!report) return;
+      const printWindow = window.open('', '_blank', 'width=900,height=700');
+      if (!printWindow) {
+        showToast('يرجى السماح بالنوافذ المنبثقة لتصدير PDF.', 'error');
+        return;
+      }
+      printWindow.document.open();
+      printWindow.document.write(buildDailyReportDocument(report));
+      printWindow.document.close();
+    }
+
+    function renderDailyReports() {
+      const list = document.getElementById('dailyReportsList');
+      const count = document.getElementById('dailyReportsCount');
+      if (!list) return;
+      if (count) count.textContent = `${dailyReports.length} تقرير`;
+      if (!dailyReports.length) {
+        list.innerHTML = '<div class="px-6 py-10 text-center text-sm text-slate-500">لا توجد تقارير يومية محفوظة حتى الآن.</div>';
+        return;
+      }
+      const reports = [...dailyReports].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      list.innerHTML = reports.map(report => {
+        const safeLink = /^https?:\/\//i.test(report.link || '') ? report.link : '';
+        return `<article class="p-5 flex flex-col md:flex-row md:items-center gap-4 justify-between"><div class="min-w-0"><div class="flex flex-wrap items-center gap-2 mb-2"><span class="px-2 py-0.5 rounded-full bg-fuchsia-50 border border-fuchsia-100 text-fuchsia-700 text-[11px] font-bold">${escapeHtml(report.type)}</span><span class="text-xs text-slate-500">${escapeHtml(formatArabicDate(report.date))}</span></div><h4 class="font-bold text-slate-900">${escapeHtml(report.title)}</h4><p class="mt-1 text-sm text-slate-600 whitespace-pre-wrap line-clamp-2">${escapeHtml(report.notes)}</p>${safeLink ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener noreferrer" class="inline-block mt-2 text-xs text-fuchsia-700 hover:underline" dir="ltr">${escapeHtml(safeLink)}</a>` : ''}</div><div class="flex shrink-0 gap-2"><button type="button" data-edit-daily-report="${escapeHtml(report.id)}" class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50">تعديل</button><button type="button" data-pdf-daily-report="${escapeHtml(report.id)}" class="px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-bold hover:bg-slate-800">PDF</button><button type="button" data-delete-daily-report="${escapeHtml(report.id)}" class="px-3 py-1.5 rounded-lg text-xs font-bold text-rose-600 hover:bg-rose-50">حذف</button></div></article>`;
+      }).join('');
+    }
+
+    // --- 10. MARKETING ADVERTISING COST ---
+    const ADVERTISING_COST_STORAGE_KEY = 'marketing_flow_advertising_cost_v1';
+    const defaultDigitalChannels = ['Facebook', 'Instagram', 'TikTok', 'Google', 'YouTube'];
+    const defaultFixedAssets = ['Outdoor Digital Screens', 'Buses', 'Trucks', 'Bags', 'Receipts', 'Radio', 'Metro', 'Tunnels', 'Subway Radio', 'Subway Advertising'];
+    let advertisingCampaign = { name: '', start: '', end: '', sponsors: '', costs: {}, customDigital: [], customFixed: [] };
+
+    function getDigitalChannels() { return [...defaultDigitalChannels, ...(advertisingCampaign.customDigital || [])]; }
+    function getFixedAssets() { return [...defaultFixedAssets, ...(advertisingCampaign.customFixed || [])]; }
+
+    function numberEGP(value) {
+      return new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(Number(value) || 0) + ' ج.م';
+    }
+
+    function loadAdvertisingCampaign() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(ADVERTISING_COST_STORAGE_KEY) || '{}');
+        advertisingCampaign = { name: saved.name || '', start: saved.start || '', end: saved.end || '', sponsors: saved.sponsors || '', costs: saved.costs || {}, customDigital: Array.isArray(saved.customDigital) ? saved.customDigital : [], customFixed: Array.isArray(saved.customFixed) ? saved.customFixed : [] };
+      } catch (error) { advertisingCampaign = { name: '', start: '', end: '', sponsors: '', costs: {}, customDigital: [], customFixed: [] }; }
+    }
+
+    function advertisingTotal(list) {
+      return list.reduce((sum, item) => sum + (Number(advertisingCampaign.costs[item]) || 0), 0);
+    }
+
+    function advertisingGrandTotal() {
+      return advertisingTotal(getDigitalChannels()) + advertisingTotal(getFixedAssets());
+    }
+
+    function renderAdvertisingCostFields() {
+      const digitalContainer = document.getElementById('digitalCostFields');
+      const fixedContainer = document.getElementById('fixedCostFields');
+      if (!digitalContainer || !fixedContainer) return;
+      const fields = (list, tone, customItems, group) => list.map(item => `<div class="grid grid-cols-[1fr_150px_auto] items-center gap-3 text-sm"><span class="font-medium text-slate-700">${escapeHtml(item)}</span><span class="relative"><input type="number" min="0" step="1" data-ad-cost="${escapeHtml(item)}" value="${Number(advertisingCampaign.costs[item]) || ''}" placeholder="0" class="w-full rounded-lg border border-slate-200 ps-3 pe-10 py-2 text-sm text-left focus:border-${tone}-500 outline-none" dir="ltr" /><span class="absolute end-3 top-2.5 text-xs text-slate-400">EGP</span></span>${customItems.includes(item) ? `<button type="button" data-remove-ad-item="${escapeHtml(item)}" data-ad-group="${group}" class="text-rose-500 hover:text-rose-700 text-lg leading-none" title="حذف العنصر">×</button>` : '<span></span>'}</div>`).join('');
+      digitalContainer.innerHTML = fields(getDigitalChannels(), 'indigo', advertisingCampaign.customDigital || [], 'digital');
+      fixedContainer.innerHTML = fields(getFixedAssets(), 'amber', advertisingCampaign.customFixed || [], 'fixed');
+      digitalContainer.querySelectorAll('[data-ad-cost]').forEach(input => input.oninput = () => {
+        advertisingCampaign.costs[input.dataset.adCost] = Number(input.value) || 0;
+        updateAdvertisingTotals();
+      });
+      fixedContainer.querySelectorAll('[data-ad-cost]').forEach(input => input.oninput = () => {
+        advertisingCampaign.costs[input.dataset.adCost] = Number(input.value) || 0;
+        updateAdvertisingTotals();
+      });
+      [digitalContainer, fixedContainer].forEach(container => container.querySelectorAll('[data-remove-ad-item]').forEach(button => button.onclick = () => removeAdvertisingItem(button.dataset.adGroup, button.dataset.removeAdItem)));
+    }
+
+    function updateAdvertisingTotals() {
+      const digital = advertisingTotal(getDigitalChannels());
+      const fixed = advertisingTotal(getFixedAssets());
+      const digitalTotal = document.getElementById('digitalTotal');
+      const fixedTotal = document.getElementById('fixedTotal');
+      const grandTotal = document.getElementById('advertisingGrandTotal');
+      if (digitalTotal) digitalTotal.textContent = numberEGP(digital);
+      if (fixedTotal) fixedTotal.textContent = numberEGP(fixed);
+      if (grandTotal) grandTotal.textContent = numberEGP(digital + fixed);
+      renderDashboardMetrics();
+    }
+
+    function renderAdvertisingCampaign() {
+      const name = document.getElementById('campaignName');
+      if (!name) return;
+      name.value = advertisingCampaign.name;
+      document.getElementById('campaignStart').value = advertisingCampaign.start;
+      document.getElementById('campaignEnd').value = advertisingCampaign.end;
+      document.getElementById('campaignSponsors').value = advertisingCampaign.sponsors;
+      renderAdvertisingCostFields();
+      updateAdvertisingTotals();
+    }
+
+    function saveAdvertisingCampaign() {
+      advertisingCampaign.name = document.getElementById('campaignName').value.trim();
+      advertisingCampaign.start = document.getElementById('campaignStart').value;
+      advertisingCampaign.end = document.getElementById('campaignEnd').value;
+      advertisingCampaign.sponsors = document.getElementById('campaignSponsors').value.trim();
+      if (advertisingCampaign.start && advertisingCampaign.end && advertisingCampaign.end < advertisingCampaign.start) {
+        alert('تاريخ نهاية الحملة يجب أن يكون بعد تاريخ البداية أو مساويًا له.');
+        return false;
+      }
+      localStorage.setItem(ADVERTISING_COST_STORAGE_KEY, JSON.stringify(advertisingCampaign));
+      updateAdvertisingTotals();
+      showToast('تم حفظ تكلفة الحملة الإعلانية بالجنيه المصري.');
+      return true;
+    }
+
+    function resetAdvertisingCampaign() {
+      advertisingCampaign = { name: '', start: '', end: '', sponsors: '', costs: {}, customDigital: [], customFixed: [] };
+      localStorage.removeItem(ADVERTISING_COST_STORAGE_KEY);
+      renderAdvertisingCampaign();
+      showToast('تم مسح قيم الحملة الإعلانية.');
+    }
+
+    function addAdvertisingItem(group) {
+      const input = document.getElementById(group === 'digital' ? 'newDigitalItem' : 'newFixedItem');
+      const item = (input?.value || '').trim();
+      if (!item) return;
+      const allItems = [...getDigitalChannels(), ...getFixedAssets()];
+      if (allItems.some(existing => existing.toLowerCase() === item.toLowerCase())) {
+        showToast('هذا العنصر موجود بالفعل.', 'error');
+        return;
+      }
+      const key = group === 'digital' ? 'customDigital' : 'customFixed';
+      advertisingCampaign[key].push(item);
+      if (input) input.value = '';
+      renderAdvertisingCostFields();
+      updateAdvertisingTotals();
+    }
+
+    function removeAdvertisingItem(group, item) {
+      const key = group === 'digital' ? 'customDigital' : 'customFixed';
+      advertisingCampaign[key] = advertisingCampaign[key].filter(existing => existing !== item);
+      delete advertisingCampaign.costs[item];
+      renderAdvertisingCostFields();
+      updateAdvertisingTotals();
+    }
+
+    function switchAppView(view) {
+      const tasksView = document.getElementById('tasksView');
+      const reportsView = document.getElementById('dailyReportView');
+      const advertisingView = document.getElementById('advertisingCostView');
+      if (!tasksView || !reportsView || !advertisingView) return;
+      const showReports = view === 'daily-report';
+      const showAdvertising = view === 'advertising-cost';
+      tasksView.classList.toggle('hidden', showReports || showAdvertising);
+      reportsView.classList.toggle('hidden', !showReports);
+      advertisingView.classList.toggle('hidden', !showAdvertising);
+      document.querySelectorAll('[data-app-view]').forEach(button => {
+        const active = button.getAttribute('data-app-view') === view;
+        button.className = `app-view-tab px-4 py-2 rounded-lg text-xs font-bold transition-colors ${active ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`;
+      });
+      if (showReports) renderDailyReports();
+      if (showAdvertising) renderAdvertisingCampaign();
+    }
+
+    // --- 10. INITIALIZE UI & EVENT BINDINGS ---
+    function populateAssignees() {
+      const sel = document.getElementById('assigneeFilterSelect');
+      if (!sel) return;
+      const list = appStore.getUniqueAssignees();
+      let h = `<option value="all">${currentLang === 'ar' ? 'جميع الموكلين' : 'All Assignees'}</option>`;
+      list.forEach(a => h += `<option value="${a}">${a}</option>`);
+      sel.innerHTML = h;
+    }
+
+    function updateLanguageUI() {
+      const isAr = currentLang === 'ar';
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t(k)) el.textContent = t(k);
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const k = el.getAttribute('data-i18n-placeholder');
+        if (t(k)) el.placeholder = t(k);
+      });
+
+      const btn = document.getElementById('langToggleBtn');
+      if (btn) btn.textContent = isAr ? 'English' : 'العربية';
+
+      populateAssignees();
+      renderDashboardMetrics();
+      renderGanttChart();
+    }
+
+    function initApplication() {
+      // Daily marketing reports
+      loadDailyReports();
+      resetDailyReportForm();
+      renderDailyReports();
+      document.querySelectorAll('[data-app-view]').forEach(button => {
+        button.onclick = () => switchAppView(button.getAttribute('data-app-view'));
+      });
+      const dailyReportForm = document.getElementById('dailyReportForm');
+      if (dailyReportForm) {
+        dailyReportForm.onsubmit = (event) => {
+          event.preventDefault();
+          const id = document.getElementById('dailyReportId').value || `MR-${Date.now()}`;
+          const report = {
+            id,
+            date: document.getElementById('dailyReportDate').value,
+            type: document.getElementById('dailyReportCustomType').value.trim() || document.getElementById('dailyReportType').value,
+            title: document.getElementById('dailyReportTitle').value.trim(),
+            notes: document.getElementById('dailyReportNotes').value.trim(),
+            link: document.getElementById('dailyReportLink').value.trim(),
+            updatedAt: new Date().toISOString()
+          };
+          const index = dailyReports.findIndex(item => item.id === id);
+          if (index >= 0) dailyReports[index] = report;
+          else dailyReports.unshift(report);
+          saveDailyReports();
+          resetDailyReportForm();
+          showToast(index >= 0 ? 'تم تحديث التقرير اليومي.' : 'تم حفظ التقرير اليومي.');
+        };
+      }
+      const newDailyReportBtn = document.getElementById('newDailyReportBtn');
+      if (newDailyReportBtn) newDailyReportBtn.onclick = resetDailyReportForm;
+      const clearDailyReportBtn = document.getElementById('clearDailyReportBtn');
+      if (clearDailyReportBtn) clearDailyReportBtn.onclick = resetDailyReportForm;
+      const dailyReportsList = document.getElementById('dailyReportsList');
+      if (dailyReportsList) {
+        dailyReportsList.onclick = (event) => {
+          const button = event.target.closest('button');
+          if (!button) return;
+          if (button.dataset.editDailyReport) editDailyReport(button.dataset.editDailyReport);
+          if (button.dataset.deleteDailyReport) deleteDailyReport(button.dataset.deleteDailyReport);
+          if (button.dataset.pdfDailyReport) exportDailyReportPdf(button.dataset.pdfDailyReport);
+        };
+      }
+
+      // Marketing advertising cost
+      loadAdvertisingCampaign();
+      renderAdvertisingCampaign();
+      const advertisingCostForm = document.getElementById('advertisingCostForm');
+      if (advertisingCostForm) advertisingCostForm.onsubmit = (event) => { event.preventDefault(); saveAdvertisingCampaign(); };
+      const resetAdvertisingCostBtn = document.getElementById('resetAdvertisingCostBtn');
+      if (resetAdvertisingCostBtn) resetAdvertisingCostBtn.onclick = resetAdvertisingCampaign;
+      const addDigitalItemBtn = document.getElementById('addDigitalItemBtn');
+      if (addDigitalItemBtn) addDigitalItemBtn.onclick = () => addAdvertisingItem('digital');
+      const addFixedItemBtn = document.getElementById('addFixedItemBtn');
+      if (addFixedItemBtn) addFixedItemBtn.onclick = () => addAdvertisingItem('fixed');
+      const newDigitalItem = document.getElementById('newDigitalItem');
+      if (newDigitalItem) newDigitalItem.onkeydown = (event) => { if (event.key === 'Enter') { event.preventDefault(); addAdvertisingItem('digital'); } };
+      const newFixedItem = document.getElementById('newFixedItem');
+      if (newFixedItem) newFixedItem.onkeydown = (event) => { if (event.key === 'Enter') { event.preventDefault(); addAdvertisingItem('fixed'); } };
+
+      // New Task button in header
+      const newTaskBtn = document.getElementById('newTaskBtn');
+      if (newTaskBtn) {
+        newTaskBtn.onclick = () => openTaskModal(null);
+      }
+
+      // Export buttons
+      const exportCsvBtn = document.getElementById('exportCsvBtn');
+      if (exportCsvBtn) exportCsvBtn.onclick = exportCSV;
+
+      const exportJsonBtn = document.getElementById('exportJsonBtn');
+      if (exportJsonBtn) exportJsonBtn.onclick = exportJSON;
+
+      // Google Sheets modal
+      const sheetsModalBtn = document.getElementById('sheetsModalBtn');
+      if (sheetsModalBtn) {
+        sheetsModalBtn.onclick = () => document.getElementById('googleSheetsModal').classList.remove('hidden');
+      }
+      const closeSheetsModalBtn = document.getElementById('closeSheetsModalBtn');
+      if (closeSheetsModalBtn) {
+        closeSheetsModalBtn.onclick = () => document.getElementById('googleSheetsModal').classList.add('hidden');
+      }
+
+      // Language toggle
+      const langToggleBtn = document.getElementById('langToggleBtn');
+      if (langToggleBtn) {
+        langToggleBtn.onclick = () => {
+          currentLang = currentLang === 'ar' ? 'en' : 'ar';
+          updateLanguageUI();
+        };
+      }
+
+      // Reset demo
+      const resetDemoBtn = document.getElementById('resetDemoBtn');
+      if (resetDemoBtn) {
+        resetDemoBtn.onclick = () => {
+          if (confirm(currentLang === 'ar' ? 'استعادة المهام التجريبية الأولية؟' : 'Reset demo tasks?')) {
+            appStore.resetToDemo();
+            showToast(currentLang === 'ar' ? 'تمت استعادة البيانات التجريبية بنجاح' : 'Demo data restored successfully');
+          }
+        };
+      }
+
+      // Search & Filters
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.oninput = (e) => {
+          appStore.filters.search = e.target.value;
+          appStore.notify('filter');
+        };
+      }
+
+      const deptFilter = document.getElementById('deptFilterSelect');
+      if (deptFilter) {
+        deptFilter.onchange = (e) => {
+          appStore.filters.department = e.target.value;
+          appStore.notify('filter');
+        };
+      }
+
+      const statusFilter = document.getElementById('statusFilterSelect');
+      if (statusFilter) {
+        statusFilter.onchange = (e) => {
+          appStore.filters.status = e.target.value;
+          appStore.notify('filter');
+        };
+      }
+
+      const priorityFilter = document.getElementById('priorityFilterSelect');
+      if (priorityFilter) {
+        priorityFilter.onchange = (e) => {
+          appStore.filters.priority = e.target.value;
+          appStore.notify('filter');
+        };
+      }
+
+      const assigneeFilter = document.getElementById('assigneeFilterSelect');
+      if (assigneeFilter) {
+        assigneeFilter.onchange = (e) => {
+          appStore.filters.assignee = e.target.value;
+          appStore.notify('filter');
+        };
+      }
+
+      const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+      if (clearFiltersBtn) {
+        clearFiltersBtn.onclick = () => {
+          appStore.filters = { search: '', department: 'all', status: 'all', priority: 'all', assignee: 'all' };
+          if (searchInput) searchInput.value = '';
+          if (deptFilter) deptFilter.value = 'all';
+          if (statusFilter) statusFilter.value = 'all';
+          if (priorityFilter) priorityFilter.value = 'all';
+          if (assigneeFilter) assigneeFilter.value = 'all';
+          appStore.notify('filter');
+        };
+      }
+
+      // View modes
+      document.querySelectorAll('[data-view-mode]').forEach(btn => {
+        btn.onclick = () => {
+          appStore.viewMode = btn.getAttribute('data-view-mode');
+          document.querySelectorAll('[data-view-mode]').forEach(b => {
+            if (b === btn) {
+              b.className = "px-3 py-1 rounded-md font-medium transition-all bg-slate-900 text-white shadow-xs";
+            } else {
+              b.className = "px-3 py-1 rounded-md font-medium transition-all bg-white text-slate-700 hover:bg-slate-50";
+            }
+          });
+          renderGanttChart();
+        };
+      });
+
+      // Zoom
+      const zoomInBtn = document.getElementById('zoomInBtn');
+      if (zoomInBtn) {
+        zoomInBtn.onclick = () => {
+          appStore.zoomLevel = Math.min(2, appStore.zoomLevel + 0.2);
+          renderGanttChart();
+        };
+      }
+      const zoomOutBtn = document.getElementById('zoomOutBtn');
+      if (zoomOutBtn) {
+        zoomOutBtn.onclick = () => {
+          appStore.zoomLevel = Math.max(0.6, appStore.zoomLevel - 0.2);
+          renderGanttChart();
+        };
+      }
+
+      // CSV file import
+      const csvInput = document.getElementById('csvFileInput');
+      const triggerImportCsvBtn = document.getElementById('triggerImportCsvBtn');
+      if (triggerImportCsvBtn && csvInput) {
+        triggerImportCsvBtn.onclick = () => csvInput.click();
+        csvInput.onchange = (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (re) => {
+            try {
+              const lines = re.target.result.replace(/^\uFEFF/, '').split(/\r?\n/).filter(Boolean);
+              if (lines.length > 1) {
+                showToast('تم استيراد ملف CSV بنجاح!');
+                renderDashboardMetrics();
+                renderGanttChart();
+              }
+            } catch(err) { alert('خطأ في استيراد CSV'); }
+          };
+          reader.readAsText(file);
+        };
+      }
+
+      // App Store reactivity
+      appStore.subscribe(() => {
+        renderDashboardMetrics();
+        renderGanttChart();
+        populateAssignees();
+        const f = appStore.filters;
+        const active = f.search || f.department !== 'all' || f.status !== 'all' || f.priority !== 'all' || f.assignee !== 'all';
+        const clearBtn = document.getElementById('clearFiltersBtn');
+        if (clearBtn) clearBtn.classList.toggle('hidden', !active);
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeTaskModal();
+          const sm = document.getElementById('googleSheetsModal');
+          if (sm) sm.classList.add('hidden');
+        }
+      });
+
+      // Initial Render
+      updateLanguageUI();
+    }
+
+    // SAFE EXECUTION: Check readyState immediately so handlers attach without delay
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApplication);
+    } else {
+      initApplication();
+    }
+  </script>
+</body>
+</html>
